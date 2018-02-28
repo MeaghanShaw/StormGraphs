@@ -27,3 +27,7 @@ stormevents$SO42_mmolL<-(stormevents$SO42_mgL/96.06)
 
 # Scatter plot matrix for Al to SO42
 pairs(stormevents[20:27])
+
+# Plot July 7 event for Fe and Mn
+
+
