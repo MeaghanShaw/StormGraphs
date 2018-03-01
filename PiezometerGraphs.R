@@ -20,8 +20,19 @@ piezocat$Na_mmolL<-(piezocat$Na_mgL/22.99)
 
 piezoan$SO42_mmolL<-(piezoan$SO42_mgL/96.06)
 piezoan$Cl_mmolL<-(piezoan$Cl_mgL/35.453)
+
+#Access BDP subset of piezocat data
+
+#BDPpiezocat<-piezocat[piezocat$sample_name == "BDP" | piezocat$sample_name == "P1"
+                     # | piezocat$sample_name == "P2" | piezocat$sample_name == "P3"
+                     # | piezocat$sample_name == "P4"]
+#Why didn't this work? Mer.
+
+
 #box and whisker plot of piezometer data and SO42-
 plot(piezoan$sample_name,piezoan$SO42_mmolL)
 
 #box and whisker plot of piezometer data and Ca
 plot(piezocat$sample_name,piezocat$Ca_mmolL)
+
+
