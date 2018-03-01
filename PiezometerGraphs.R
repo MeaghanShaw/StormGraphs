@@ -1,8 +1,9 @@
-# Rename columns to be R friendly
-
+# Rename columns to be R friendly. 
+#Piezocat is cation data from piezometers, BDP, and DP
 newname<-c("sample_name","Site","date","Depth_cm","Al_mgL","Ca_mgL","Fe_mgL","K_mgL","Mg_mgL","Mn_mgL","Na_mgL")
 piezocat<-read.csv(file="PiezometerData.csv",header=TRUE)
 colnames(piezocat)<-newname
+#Piezoan is anion data from piezometers, BDP, and DP
 icnewname<-c("sample_name","Site","date","Depth_cm","SO42_mgL","Cl_mgL")
 piezoan<-read.csv(file="ICPiezometer.csv",header=TRUE)
 colnames(piezoan)<-icnewname
