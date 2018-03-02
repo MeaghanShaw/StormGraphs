@@ -33,4 +33,28 @@ CQ$logSO42<-(log10(CQ$SO42_mmolL))
 CQlogH<-(log10(CQ$H_mgL))
 CQlogEC<-(log10(CQ$EC))
 
-
+#Function to pull regression text out
+lm_eqn<-function(df){
+  m<-lm(y~x,df)
+  eq<-substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                 list(a = format(coef(m)[1], digits = 2),
+                      b = format(coef(m)[2], digits = 2),
+                      r2 = format(summary(m)$r.squared,digits=3)))
+  as.character(as.expression(eq))
+}
+#making plots
+library(ggplot2)
+pal="purple"
+shape1=21
+df<-CQ[,c("logQ","logCa")]
+names(df)<-c("x","y")
+CQCa<-ggplot(CQ, aes(logQ,logCa))+
+  geom_point(colour="black",size=4, fill=pal, pch=shape1)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"))+
+  xlab("\nLog(Q)")+
+  ylab("Log(Ca)\n")+
+  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,se=FALSE)
+#Call the graph
+CQCa
