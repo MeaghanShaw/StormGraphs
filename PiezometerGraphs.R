@@ -21,12 +21,18 @@ piezocat$Na_mmolL<-(piezocat$Na_mgL/22.99)
 piezoan$SO42_mmolL<-(piezoan$SO42_mgL/96.06)
 piezoan$Cl_mmolL<-(piezoan$Cl_mgL/35.453)
 
-#Access BDP subset of piezocat data
+#Access BDP subset of piezocat data and make BDP file
 
-#BDPpiezocat<-piezocat[piezocat$sample_name == "BDP" | piezocat$sample_name == "P1"
-                     # | piezocat$sample_name == "P2" | piezocat$sample_name == "P3"
-                     # | piezocat$sample_name == "P4"]
-#Why didn't this work? Mer.
+BDPpiezocat<-piezocat[which(piezocat$sample_name == "BDP" | piezocat$sample_name == "P1"
+                      | piezocat$sample_name == "P2" | piezocat$sample_name == "P3"
+                      | piezocat$sample_name == "P4"),]
+
+#Pulls out day of year to plot as x variable (makes scatter plot)
+BDPpiezocat$newdate<-mdy(BDPpiezocat$date)
+BDPpiezocat$doy<-yday(BDPpiezocat$newdate)
+
+#Plots doy as x and Ca_mmol/L as y
+plot(BDPpiezocat$doy,BDPpiezocat$Ca_mmolL)
 
 
 #box and whisker plot of piezometer data and SO42-

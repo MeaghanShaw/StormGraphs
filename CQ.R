@@ -21,5 +21,16 @@ CQ$H_mgL<-(10^(-1*CQ$pH))
 
 #Take the log of everything
 
-#CQ$logQ<-(log(CQ$Q_m3s))
-#CQ$logAl<-(log(CQ$Al_mmolL))
+CQ$logQ<-(log10(CQ$Q_m3s))
+CQ$logAl<-(log10(CQ$Al_mmolL))
+CQ$logCa<-(log10(CQ$Ca_mmolL))
+CQ$logFe<-(log10(CQ$Fe_mmolL))
+CQ$logK<-(log10(CQ$K_mmolL))
+CQ$logMg<-(log10(CQ$Mg_mmolL))
+CQ$logMn<-(log10(CQ$Mn_mmolL))
+CQ$logNa<-(log10(CQ$Na_mmolL))
+CQ$logSO42<-(log10(CQ$SO42_mmolL))
+CQlogH<-(log10(CQ$H_mgL))
+CQlogEC<-(log10(CQ$EC))
+
+
