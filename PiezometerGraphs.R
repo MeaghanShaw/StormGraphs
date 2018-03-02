@@ -21,6 +21,15 @@ piezocat$Na_mmolL<-(piezocat$Na_mgL/22.99)
 piezoan$SO42_mmolL<-(piezoan$SO42_mgL/96.06)
 piezoan$Cl_mmolL<-(piezoan$Cl_mgL/35.453)
 
+
+#box and whisker plot of piezometer data and SO42-
+plot(piezoan$sample_name,piezoan$SO42_mmolL)
+
+#box and whisker plot of piezometer data and Ca
+plot(piezocat$sample_name,piezocat$Ca_mmolL)
+
+
+
 #Access BDP subset of piezocat data and make BDP file
 
 BDPpiezocat<-piezocat[which(piezocat$sample_name == "BDP" | piezocat$sample_name == "P1"
@@ -34,11 +43,23 @@ BDPpiezocat$doy<-yday(BDPpiezocat$newdate)
 #Plots doy as x and Ca_mmol/L as y
 plot(BDPpiezocat$doy,BDPpiezocat$Ca_mmolL)
 
+#Plots BDP Ca data by date and has all depths
+library(ggplot2)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24, 25)
+BDPCa<-ggplot(BDPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("Ca (mmol L-1)")
+#Call the graph
+BDPCa
 
-#box and whisker plot of piezometer data and SO42-
-plot(piezoan$sample_name,piezoan$SO42_mmolL)
-
-#box and whisker plot of piezometer data and Ca
-plot(piezocat$sample_name,piezocat$Ca_mmolL)
-
+#save to pdf
+pdf("BDPCa.pdf",height=6,width=8)
+BDPCa
+dev.off()
 
