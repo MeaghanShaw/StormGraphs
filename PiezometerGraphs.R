@@ -7,6 +7,8 @@ colnames(piezocat)<-newname
 icnewname<-c("sample_name","Site","date","Depth_cm","SO42_mgL","Cl_mgL")
 piezoan<-read.csv(file="ICPiezometer.csv",header=TRUE)
 colnames(piezoan)<-icnewname
+#Call pH and EC data
+pHandEC<-read.csv(file="pHandEC.csv",header=TRUE)
 
 #Transform mg/L to mmol/L
 
@@ -28,7 +30,47 @@ plot(piezoan$sample_name,piezoan$SO42_mmolL)
 #box and whisker plot of piezometer data and Ca
 plot(piezocat$sample_name,piezocat$Ca_mmolL)
 
+#Access BDP subset of pH and EC data and make BDP file
+BDPpHEC<-pHandEC[which(pHandEC$sample_name == "BDP"
+                       | pHandEC$sample_name == "P1" 
+                       | pHandEC$sample_name == "P2"
+                       | pHandEC$sample_name == "P3"
+                       | pHandEC$sample_name == "P4"),]
 
+#Pulls out day of year to plot as x variable (makes scatter plot)
+library(lubridate)
+BDPpHEC$newdate<-mdy(BDPpHEC$Date)
+BDPpHEC$doy<-yday(BDPpHEC$newdate)
+
+#Plots BDP pH data by date
+library(ggplot2)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24, 25)
+BDPpH<-ggplot(BDPpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("pH")
+#Call the graph
+BDPpH
+
+#Plots BDP EC data by date
+library(ggplot2)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
+BDPEC<-ggplot(BDPpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("EC")
+#Call the graph
+BDPEC
 
 #Access BDP subset of piezocat data and make BDP file
 
@@ -276,6 +318,48 @@ BDPSO42<-ggplot(BDPan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.
 #Call the graph
 BDPSO42
 
+#Access DP subset of pH and EC data and make DP file
+DPpHEC<-pHandEC[which(pHandEC$sample_name == "DP"
+                       | pHandEC$sample_name == "P5" 
+                       | pHandEC$sample_name == "P6"
+                       | pHandEC$sample_name == "P7"
+                       | pHandEC$sample_name == "P8"),]
+
+#Pulls out day of year to plot as x variable (makes scatter plot)
+library(lubridate)
+DPpHEC$newdate<-mdy(DPpHEC$Date)
+DPpHEC$doy<-yday(DPpHEC$newdate)
+
+#Plots DP pH data by date
+library(ggplot2)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24, 25)
+DPpH<-ggplot(DPpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("pH")
+#Call the graph
+DPpH
+
+#Plots DP EC data by date
+library(ggplot2)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
+DPEC<-ggplot(DPpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("EC")
+#Call the graph
+DPEC
+
 #Access DP subset of piezocat data and make DP file
 
 DPpiezocat<-piezocat[which(piezocat$sample_name == "P5"
@@ -516,6 +600,46 @@ DPSO42<-ggplot(DPan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.fa
 #Call the graph
 DPSO42
 
+#Access SB subset of pH and EC data and make DP file
+SBpHEC<-pHandEC[which(pHandEC$sample_name == "P9" 
+                      | pHandEC$sample_name == "P10"
+                      | pHandEC$sample_name == "P11"
+                      | pHandEC$sample_name == "P12"),]
+
+#Pulls out day of year to plot as x variable (makes scatter plot)
+library(lubridate)
+SBpHEC$newdate<-mdy(SBpHEC$Date)
+SBpHEC$doy<-yday(SBpHEC$newdate)
+
+#Plots SB pH data by date
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679","#238443")
+shape1<-c(21, 22, 23, 24)
+SBpH<-ggplot(SBpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("pH")
+#Call the graph
+SBpH
+
+#Plots SB EC data by date
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679","#238443")
+shape1<-c(21, 22, 23, 24)
+SBEC<-ggplot(SBpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
+  xlab("\nDate")+
+  ylab("EC")
+#Call the graph
+SBEC
 
 #Access SB subset of piezocat data and make SB file
 
