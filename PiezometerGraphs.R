@@ -9,6 +9,8 @@ piezoan<-read.csv(file="ICPiezometer.csv",header=TRUE)
 colnames(piezoan)<-icnewname
 #Call pH and EC data
 pHandEC<-read.csv(file="pHandEC.csv",header=TRUE)
+#Call averages data
+avgchem<-read.csv(file="AverageChem.csv",header=TRUE)
 
 #Transform mg/L to mmol/L
 
@@ -765,3 +767,154 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
   ylab("SO42- (mmol L-1)")
 #Call the graph
 SBSO42
+
+#Plots pH averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgpH<-ggplot(avgchem, aes(avg_pH,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\npH")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgpH
+
+#Plots EC averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgEC<-ggplot(avgchem, aes(avg_EC,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nEC")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgEC
+
+#Plots SO42- averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgSO42<-ggplot(avgchem, aes(avg_SO42_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nSO42- (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgSO42
+
+
+#Plots Ca averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgCa<-ggplot(avgchem, aes(avg_Ca_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nCa (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgCa
+
+#Plots Fe averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgFe<-ggplot(avgchem, aes(avg_Fe_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nFe (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgFe
+
+#Plots K averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgK<-ggplot(avgchem, aes(avg_K_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nK (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgK
+
+#Plots Mg averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgMg<-ggplot(avgchem, aes(avg_Mg_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nMg (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgMg
+
+#Plots Mn averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgMn<-ggplot(avgchem, aes(avg_Mn_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nMn (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgMn
+
+#Plots Na averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgNa<-ggplot(avgchem, aes(avg_Na_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nNa (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgNa
+
+#Plots DOC averages for all sites
+library(ggplot2)
+pal<-c("#ffffcc","#c2e699","#78c679")
+shape1<-c(21, 22, 23)
+AvgDOC<-ggplot(avgchem, aes(avg_DOC_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nDOC (mmol L-1)")+
+  ylab("Depth (cm)\n")
+#Call the graph
+AvgDOC
