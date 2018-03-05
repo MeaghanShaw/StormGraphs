@@ -53,6 +53,7 @@ names(df)<-c("x","y")
 CQCa<-ggplot(CQ, aes(logQ,logCa))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(Ca)\n")+
@@ -70,6 +71,7 @@ names(df)<-c("x","y")
 CQAl<-ggplot(CQ, aes(logQ,logAl))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(Al)\n")+
@@ -87,6 +89,7 @@ names(df)<-c("x","y")
 CQFe<-ggplot(CQ, aes(logQ,logFe))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(Fe)\n")+
@@ -104,6 +107,7 @@ names(df)<-c("x","y")
 CQK<-ggplot(CQ, aes(logQ,logK))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(K)\n")+
@@ -121,6 +125,7 @@ names(df)<-c("x","y")
 CQMg<-ggplot(CQ, aes(logQ,logMg))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(Mg)\n")+
@@ -138,6 +143,7 @@ names(df)<-c("x","y")
 CQMn<-ggplot(CQ, aes(logQ,logMn))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(Mn)\n")+
@@ -155,6 +161,7 @@ names(df)<-c("x","y")
 CQNa<-ggplot(CQ, aes(logQ,logNa))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(Na)\n")+
@@ -172,6 +179,7 @@ names(df)<-c("x","y")
 CQSO42<-ggplot(CQ, aes(logQ,logSO42))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(SO42-)\n")+
@@ -189,6 +197,7 @@ names(df)<-c("x","y")
 CQH<-ggplot(CQ, aes(logQ,logH))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(H+)\n")+
@@ -206,6 +215,7 @@ names(df)<-c("x","y")
 CQEC<-ggplot(CQ, aes(logQ,logEC))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q)")+
   ylab("Log(EC)\n")+

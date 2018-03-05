@@ -53,6 +53,7 @@ BDPpH<-ggplot(BDPpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(D
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("pH")
@@ -68,6 +69,7 @@ BDPEC<-ggplot(BDPpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(D
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("EC")
@@ -113,6 +115,7 @@ BDPpiezoCa<-ggplot(BDPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),sh
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Ca (mmol L-1)")
@@ -128,6 +131,7 @@ BDPCa<-ggplot(BDPcat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.fac
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Ca (mmol L-1)")
@@ -149,6 +153,7 @@ BDPpiezoFe<-ggplot(BDPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),sh
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Fe (mmol L-1)")
@@ -164,6 +169,7 @@ BDPFe<-ggplot(BDPcat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.fac
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Fe (mmol L-1)")
@@ -179,6 +185,7 @@ BDPpiezoK<-ggplot(BDPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shap
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("K (mmol L-1)")
@@ -194,6 +201,7 @@ BDPK<-ggplot(BDPcat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.facto
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("K (mmol L-1)")
@@ -209,6 +217,7 @@ BDPpiezoMg<-ggplot(BDPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),sh
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mg (mmol L-1)")
@@ -224,6 +233,7 @@ BDPMg<-ggplot(BDPcat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.fac
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mg (mmol L-1)")
@@ -239,6 +249,7 @@ BDPpiezoMn<-ggplot(BDPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),sh
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mn (mmol L-1)")
@@ -254,6 +265,7 @@ BDPMn<-ggplot(BDPcat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.fac
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mn (mmol L-1)")
@@ -269,6 +281,7 @@ BDPpiezoNa<-ggplot(BDPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),sh
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Na (mmol L-1)")
@@ -284,6 +297,7 @@ BDPNa<-ggplot(BDPcat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.fac
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Na (mmol L-1)")
@@ -299,6 +313,7 @@ BDPpiezoSO42<-ggplot(BDPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm)
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("SO42- (mmol L-1)")
@@ -314,6 +329,7 @@ BDPSO42<-ggplot(BDPan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("SO42- (mmol L-1)")
@@ -341,6 +357,7 @@ DPpH<-ggplot(DPpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Dep
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("pH")
@@ -356,6 +373,7 @@ DPEC<-ggplot(DPpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(Dep
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("EC")
@@ -401,6 +419,7 @@ DPpiezoCa<-ggplot(DPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shap
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Ca (mmol L-1)")
@@ -416,6 +435,7 @@ DPCa<-ggplot(DPcat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.facto
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Ca (mmol L-1)")
@@ -431,6 +451,7 @@ DPpiezoFe<-ggplot(DPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shap
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Fe (mmol L-1)")
@@ -446,6 +467,7 @@ DPFe<-ggplot(DPcat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.facto
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Fe (mmol L-1)")
@@ -461,6 +483,7 @@ DPpiezoK<-ggplot(DPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("K (mmol L-1)")
@@ -476,6 +499,7 @@ DPK<-ggplot(DPcat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.factor(
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("K (mmol L-1)")
@@ -491,6 +515,7 @@ DPpiezoMg<-ggplot(DPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shap
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mg (mmol L-1)")
@@ -506,6 +531,7 @@ DPMg<-ggplot(DPcat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.facto
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mg (mmol L-1)")
@@ -521,6 +547,7 @@ DPpiezoMn<-ggplot(DPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shap
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mn (mmol L-1)")
@@ -536,6 +563,7 @@ DPMn<-ggplot(DPcat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.facto
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mn (mmol L-1)")
@@ -551,6 +579,7 @@ DPpiezoNa<-ggplot(DPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shap
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Na (mmol L-1)")
@@ -566,6 +595,7 @@ DPNa<-ggplot(DPcat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.facto
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Na (mmol L-1)")
@@ -581,6 +611,7 @@ DPpiezoSO42<-ggplot(DPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),s
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("SO42- (mmol L-1)")
@@ -596,6 +627,7 @@ DPSO42<-ggplot(DPan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.fa
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("SO42- (mmol L-1)")
@@ -622,6 +654,7 @@ SBpH<-ggplot(SBpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Dep
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("pH")
@@ -637,6 +670,7 @@ SBEC<-ggplot(SBpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(Dep
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("EC")
@@ -671,6 +705,7 @@ SBCa<-ggplot(SBpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Ca (mmol L-1)")
@@ -687,6 +722,7 @@ SBFe<-ggplot(SBpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Fe (mmol L-1)")
@@ -702,6 +738,7 @@ SBK<-ggplot(SBpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.fa
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("K (mmol L-1)")
@@ -717,6 +754,7 @@ SBMg<-ggplot(SBpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mg (mmol L-1)")
@@ -732,6 +770,7 @@ SBMn<-ggplot(SBpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Mn (mmol L-1)")
@@ -747,6 +786,7 @@ SBNa<-ggplot(SBpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("Na (mmol L-1)")
@@ -762,6 +802,7 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
   ylab("SO42- (mmol L-1)")
@@ -777,6 +818,7 @@ AvgpH<-ggplot(avgchem, aes(avg_pH,depth_cm,fill=as.factor(site),shape=as.factor(
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\npH")+
   ylab("Depth (cm)\n")
@@ -792,6 +834,7 @@ AvgEC<-ggplot(avgchem, aes(avg_EC,depth_cm,fill=as.factor(site),shape=as.factor(
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nEC")+
   ylab("Depth (cm)\n")
@@ -807,6 +850,7 @@ AvgSO42<-ggplot(avgchem, aes(avg_SO42_mmolL,depth_cm,fill=as.factor(site),shape=
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nSO42- (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -823,6 +867,7 @@ AvgCa<-ggplot(avgchem, aes(avg_Ca_mmolL,depth_cm,fill=as.factor(site),shape=as.f
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nCa (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -838,6 +883,7 @@ AvgFe<-ggplot(avgchem, aes(avg_Fe_mmolL,depth_cm,fill=as.factor(site),shape=as.f
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nFe (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -853,6 +899,7 @@ AvgK<-ggplot(avgchem, aes(avg_K_mmolL,depth_cm,fill=as.factor(site),shape=as.fac
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nK (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -868,6 +915,7 @@ AvgMg<-ggplot(avgchem, aes(avg_Mg_mmolL,depth_cm,fill=as.factor(site),shape=as.f
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nMg (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -883,6 +931,7 @@ AvgMn<-ggplot(avgchem, aes(avg_Mn_mmolL,depth_cm,fill=as.factor(site),shape=as.f
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nMn (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -898,6 +947,7 @@ AvgNa<-ggplot(avgchem, aes(avg_Na_mmolL,depth_cm,fill=as.factor(site),shape=as.f
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nNa (mmol L-1)")+
   ylab("Depth (cm)\n")
@@ -913,8 +963,10 @@ AvgDOC<-ggplot(avgchem, aes(avg_DOC_mmolL,depth_cm,fill=as.factor(site),shape=as
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDOC (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  ylab("Depth (cm)\n")+
+  #scale_x_discrete(limits=rev(levels(???)))
 #Call the graph
 AvgDOC

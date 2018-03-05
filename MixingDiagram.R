@@ -33,6 +33,7 @@ Basecatmixing<-ggplot(basecatmix, aes(basecatmix$Na_K,basecatmix$Ca_Mg,fill=as.f
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nNa/K")+
   ylab("Ca/Mg")
@@ -55,6 +56,7 @@ Metalsmixing<-ggplot(basecatmix, aes(basecatmix$logMnNa,basecatmix$logFeNa,fill=
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nMn/Na")+
   ylab("Fe/Na")
@@ -80,6 +82,7 @@ CaMgbydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Ca_Mg,fill=as.factor(Site),s
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
   ylab("Ca/Mg")
@@ -95,6 +98,7 @@ FeNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Fe_Na,fill=as.factor(Site),s
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
   ylab("Fe/Na")
@@ -110,6 +114,7 @@ MnNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Mn_Na,fill=as.factor(Site),s
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
   ylab("Mn/Na")
