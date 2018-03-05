@@ -20,7 +20,7 @@ Outchem$doy<-yday(Outchem$newdate)
 
 #Plots outlet pH by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutpH<-ggplot(Outchem, aes(newdate,pH))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -34,7 +34,7 @@ OutpH
 
 #Plots outlet EC by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutEC<-ggplot(Outchem, aes(newdate,EC))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -48,7 +48,7 @@ OutEC
 
 #Plots outlet Al by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutAl<-ggplot(Outchem, aes(newdate,Al_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -62,7 +62,7 @@ OutAl
 
 #Plots outlet Ca by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutCa<-ggplot(Outchem, aes(newdate,Ca_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -76,7 +76,7 @@ OutCa
 
 #Plots outlet Fe by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutFe<-ggplot(Outchem, aes(newdate,Fe_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -90,7 +90,7 @@ OutFe
 
 #Plots outlet K by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutK<-ggplot(Outchem, aes(newdate,K_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -104,7 +104,7 @@ OutK
 
 #Plots outlet Mg by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutMg<-ggplot(Outchem, aes(newdate,Mg_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -118,7 +118,7 @@ OutMg
 
 #Plots outlet Mn by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutMn<-ggplot(Outchem, aes(newdate,Mn_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -132,7 +132,7 @@ OutMn
 
 #Plots outlet Na by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutNa<-ggplot(Outchem, aes(newdate,Na_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -146,7 +146,7 @@ OutNa
 
 #Plots outlet SO42- by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutSO42<-ggplot(Outchem, aes(newdate,SO42_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
@@ -160,7 +160,7 @@ OutSO42
 
 #Plots outlet Cl by date
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 OutCl<-ggplot(Outchem, aes(newdate,Cl_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
