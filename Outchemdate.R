@@ -32,6 +32,11 @@ OutpH<-ggplot(Outchem, aes(newdate,pH))+
 #Call the graph
 OutpH
 
+#save to pdf
+pdf("OutpH.pdf",height=6,width=8)
+OutpH
+dev.off()
+
 #Plots outlet EC by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -45,6 +50,12 @@ OutEC<-ggplot(Outchem, aes(newdate,EC))+
   ylab("EC\n")
 #Call the graph
 OutEC
+
+#save to pdf
+pdf("OutEC.pdf",height=6,width=8)
+OutEC
+dev.off()
+
 
 #Plots outlet Al by date
 library(ggplot2)
@@ -60,6 +71,12 @@ OutAl<-ggplot(Outchem, aes(newdate,Al_mmolL))+
 #Call the graph
 OutAl
 
+#save to pdf
+pdf("OutAl.pdf",height=6,width=8)
+OutAl
+dev.off()
+
+
 #Plots outlet Ca by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -73,6 +90,12 @@ OutCa<-ggplot(Outchem, aes(newdate,Ca_mmolL))+
   ylab("Ca (mmol L-1)\n")
 #Call the graph
 OutCa
+
+#save to pdf
+pdf("OutCa.pdf",height=6,width=8)
+OutCa
+dev.off()
+
 
 #Plots outlet Fe by date
 library(ggplot2)
@@ -88,6 +111,12 @@ OutFe<-ggplot(Outchem, aes(newdate,Fe_mmolL))+
 #Call the graph
 OutFe
 
+#save to pdf
+pdf("OutFe.pdf",height=6,width=8)
+OutFe
+dev.off()
+
+
 #Plots outlet K by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -101,6 +130,11 @@ OutK<-ggplot(Outchem, aes(newdate,K_mmolL))+
   ylab("K (mmol L-1)\n")
 #Call the graph
 OutK
+
+#save to pdf
+pdf("OutK.pdf",height=6,width=8)
+OutK
+dev.off()
 
 #Plots outlet Mg by date
 library(ggplot2)
@@ -116,6 +150,12 @@ OutMg<-ggplot(Outchem, aes(newdate,Mg_mmolL))+
 #Call the graph
 OutMg
 
+#save to pdf
+pdf("OutMg.pdf",height=6,width=8)
+OutMg
+dev.off()
+
+
 #Plots outlet Mn by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -129,6 +169,12 @@ OutMn<-ggplot(Outchem, aes(newdate,Mn_mmolL))+
   ylab("Mn (mmol L-1)\n")
 #Call the graph
 OutMn
+
+#save to pdf
+pdf("OutMn.pdf",height=6,width=8)
+OutMn
+dev.off()
+
 
 #Plots outlet Na by date
 library(ggplot2)
@@ -144,6 +190,12 @@ OutNa<-ggplot(Outchem, aes(newdate,Na_mmolL))+
 #Call the graph
 OutNa
 
+#save to pdf
+pdf("OutNa.pdf",height=6,width=8)
+OutNa
+dev.off()
+
+
 #Plots outlet SO42- by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -158,6 +210,12 @@ OutSO42<-ggplot(Outchem, aes(newdate,SO42_mmolL))+
 #Call the graph
 OutSO42
 
+#save to pdf
+pdf("OutSO42.pdf",height=6,width=8)
+OutSO42
+dev.off()
+
+
 #Plots outlet Cl by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -171,3 +229,8 @@ OutCl<-ggplot(Outchem, aes(newdate,Cl_mmolL))+
   ylab("Cl (mmol L-1)\n")
 #Call the graph
 OutCl
+
+#save to pdf
+pdf("OutCl.pdf",height=6,width=8)
+OutCl
+dev.off()

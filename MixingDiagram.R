@@ -40,6 +40,11 @@ Basecatmixing<-ggplot(basecatmix, aes(basecatmix$Na_K,basecatmix$Ca_Mg,fill=as.f
 #Call the graph
 Basecatmixing
 
+#save to pdf
+pdf("Basecatmixing.pdf",height=6,width=8)
+Basecatmixing
+dev.off()
+
 #Divide Fe and Mn by Na
 basecatmix$Fe_Na<-(basecatmix$Fe_mmolL/basecatmix$Na_mmolL)
 basecatmix$Mn_Na<-(basecatmix$Mn_mmolL/basecatmix$Na_mmolL)
@@ -62,6 +67,11 @@ Metalsmixing<-ggplot(basecatmix, aes(basecatmix$logMnNa,basecatmix$logFeNa,fill=
   ylab("Fe/Na")
 #Call the graph
 Metalsmixing
+
+#save to pdf
+pdf("Metalsmixing.pdf",height=6,width=8)
+Metalsmixing
+dev.off()
 
 #Access LC, BDP, and outlet subset of cation data and make mix by date file
 Mixbydate<-basecatmix[which(basecatmix$sample_name == "BDP"
@@ -89,6 +99,11 @@ CaMgbydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Ca_Mg,fill=as.factor(Site),s
 #Call the graph
 CaMgbydate
 
+#save to pdf
+pdf("CaMgbydate.pdf",height=6,width=8)
+CaMgbydate
+dev.off()
+
 #Plots Fe/Na by date
 library(ggplot2)
 pal<-c("#ca0020","#0571b0","#c2a5cf")
@@ -105,6 +120,11 @@ FeNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Fe_Na,fill=as.factor(Site),s
 #Call the graph
 FeNabydate
 
+#save to pdf
+pdf("FeNabydate.pdf",height=6,width=8)
+FeNabydate
+dev.off()
+
 #Plots Mn/Na by date
 library(ggplot2)
 pal<-c("#ca0020","#0571b0","#c2a5cf")
@@ -120,3 +140,8 @@ MnNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Mn_Na,fill=as.factor(Site),s
   ylab("Mn/Na")
 #Call the graph
 MnNabydate
+
+#save to pdf
+pdf("MnNabydate.pdf",height=6,width=8)
+MnNabydate
+dev.off()

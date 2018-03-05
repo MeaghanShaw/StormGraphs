@@ -46,7 +46,7 @@ lm_eqn<-function(df){
 
 #Ca plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logCa")]
 names(df)<-c("x","y")
@@ -62,9 +62,14 @@ CQCa<-ggplot(CQ, aes(logQ,logCa))+
 #Call the graph
 CQCa
 
+#save to pdf
+pdf("CQCa.pdf",height=6,width=8)
+CQCa
+dev.off()
+
 #Al plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logAl")]
 names(df)<-c("x","y")
@@ -80,9 +85,14 @@ CQAl<-ggplot(CQ, aes(logQ,logAl))+
 #Call the graph
 CQAl
 
+#save to pdf
+pdf("CQAl.pdf",height=6,width=8)
+CQAl
+dev.off()
+
 #Fe plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logFe")]
 names(df)<-c("x","y")
@@ -98,9 +108,14 @@ CQFe<-ggplot(CQ, aes(logQ,logFe))+
 #Call the graph
 CQFe
 
+#save to pdf
+pdf("CQFe.pdf",height=6,width=8)
+CQFe
+dev.off()
+
 #K plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logK")]
 names(df)<-c("x","y")
@@ -116,9 +131,14 @@ CQK<-ggplot(CQ, aes(logQ,logK))+
 #Call the graph
 CQK
 
+#save to pdf
+pdf("CQK.pdf",height=6,width=8)
+CQK
+dev.off()
+
 #Mg plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logMg")]
 names(df)<-c("x","y")
@@ -134,9 +154,14 @@ CQMg<-ggplot(CQ, aes(logQ,logMg))+
 #Call the graph
 CQMg
 
+#save to pdf
+pdf("CQMg.pdf",height=6,width=8)
+CQMg
+dev.off()
+
 #Mn plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logMn")]
 names(df)<-c("x","y")
@@ -152,9 +177,14 @@ CQMn<-ggplot(CQ, aes(logQ,logMn))+
 #Call the graph
 CQMn
 
+#save to pdf
+pdf("CQMn.pdf",height=6,width=8)
+CQMn
+dev.off()
+
 #Na plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logNa")]
 names(df)<-c("x","y")
@@ -170,9 +200,14 @@ CQNa<-ggplot(CQ, aes(logQ,logNa))+
 #Call the graph
 CQNa
 
+#save to pdf
+pdf("CQNa.pdf",height=6,width=8)
+CQNa
+dev.off()
+
 #SO42- plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logSO42")]
 names(df)<-c("x","y")
@@ -188,9 +223,14 @@ CQSO42<-ggplot(CQ, aes(logQ,logSO42))+
 #Call the graph
 CQSO42
 
+#save to pdf
+pdf("CQSO42.pdf",height=6,width=8)
+CQSO42
+dev.off()
+
 #H+ plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logH")]
 names(df)<-c("x","y")
@@ -206,9 +246,14 @@ CQH<-ggplot(CQ, aes(logQ,logH))+
 #Call the graph
 CQH
 
+#save to pdf
+pdf("CQH.pdf",height=6,width=8)
+CQH
+dev.off()
+
 #EC plot
 library(ggplot2)
-pal="purple"
+pal="#c2a5cf"
 shape1=21
 df<-CQ[,c("logQ","logEC")]
 names(df)<-c("x","y")
@@ -223,3 +268,8 @@ CQEC<-ggplot(CQ, aes(logQ,logEC))+
   geom_smooth(method=lm,se=FALSE)
 #Call the graph
 CQEC
+
+#save to pdf
+pdf("CQEC.pdf",height=6,width=8)
+CQEC
+dev.off()

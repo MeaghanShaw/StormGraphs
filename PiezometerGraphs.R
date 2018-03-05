@@ -140,9 +140,9 @@ BDPCa<-ggplot(BDPcat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.fac
 BDPCa
 
 #save to pdf
-#pdf("BDPCa.pdf",height=6,width=8)
-#BDPCa
-#dev.off()
+pdf("BDPCa.pdf",height=6,width=8)
+BDPCa
+dev.off()
 
 #Plots BDP Fe data by date and has piezometer depths
 library(ggplot2)
