@@ -46,3 +46,5 @@ two_ys<-ggplot(Jul717storm,aes(x=newdate))+
 
 two_ys
 
+#Pull out processed data sheet
+write.csv(Jul717storm,"July717storm.csv")
