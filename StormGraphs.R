@@ -29,5 +29,5 @@ stormevents$SO42_mmolL<-(stormevents$SO42_mgL/96.06)
 pairs(stormevents[20:27])
 
 # Plot July 7 event for Fe and Mn
-
+#Jul717storm<-stormevents[which(stormevents$doy == "188")]
 

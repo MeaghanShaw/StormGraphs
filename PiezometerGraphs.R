@@ -25,6 +25,25 @@ piezocat$Na_mmolL<-(piezocat$Na_mgL/22.99)
 piezoan$SO42_mmolL<-(piezoan$SO42_mgL/96.06)
 piezoan$Cl_mmolL<-(piezoan$Cl_mgL/35.453)
 
+#Std dev and std err
+library(plyr)
+piezocat.site.summary<-ddply(piezocat, c("sample_name","Depth_cm","Site"), summarise,
+                         Almean = mean(Al_mmolL), Alsd = sd(Al_mmolL),
+                         Alsem = sd(Al_mmolL)/sqrt(length(Al_mmolL)),
+                         Camean = mean(Ca_mmolL), Casd = sd(Ca_mmolL),
+                         Casem = sd(Ca_mmolL)/sqrt(length(Ca_mmolL)),
+                         Femean = mean(Fe_mmolL), Fesd = sd(Fe_mmolL),
+                         Fesem = sd(Fe_mmolL)/sqrt(length(Fe_mmolL)),
+                         Kmean = mean(K_mmolL), Ksd = sd(K_mmolL),
+                         Ksem = sd(K_mmolL)/sqrt(length(K_mmolL)),
+                         Mgmean = mean(Mg_mmolL), Mgsd = sd(Mg_mmolL),
+                         Mgsem = sd(Mg_mmolL)/sqrt(length(Mg_mmolL)),
+                         Mnmean = mean(Mn_mmolL), Mnsd = sd(Mn_mmolL),
+                         Mnsem = sd(Mn_mmolL)/sqrt(length(Mn_mmolL)),
+                         Namean = mean(Na_mmolL), Nasd = sd(Na_mmolL),
+                         Nasem = sd(Na_mmolL)/sqrt(length(Na_mmolL)))
+
+
 
 #box and whisker plot of piezometer data and SO42-
 plot(piezoan$sample_name,piezoan$SO42_mmolL)
@@ -809,6 +828,10 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
 #Call the graph
 SBSO42
 
+#sort avg chem by depth
+avgchem<-piezocat.site.summary[order(piezocat.site.summary$Site, piezocat.site.summary$Depth_cm),]
+
+
 #Plots pH averages for all sites
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679")
@@ -862,15 +885,18 @@ AvgSO42
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679")
 shape1<-c(21, 22, 23)
-AvgCa<-ggplot(avgchem, aes(avg_Ca_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgCa<-ggplot(avgchem, aes(Camean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgchem,aes(y=Depth_cm,x=Camean,xmin=Camean-Casem,xmax=Camean+Casem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nCa (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  xlab("\nCa (mmol "~L^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgCa
 
@@ -943,14 +969,17 @@ library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679")
 shape1<-c(21, 22, 23)
 AvgNa<-ggplot(avgchem, aes(avg_Na_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_path()+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlim(0.3, 0.6)+
   xlab("\nNa (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgNa
 
@@ -959,6 +988,7 @@ library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679")
 shape1<-c(21, 22, 23)
 AvgDOC<-ggplot(avgchem, aes(avg_DOC_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+  geom_path()+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
@@ -967,6 +997,6 @@ AvgDOC<-ggplot(avgchem, aes(avg_DOC_mmolL,depth_cm,fill=as.factor(site),shape=as
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDOC (mmol L-1)")+
   ylab("Depth (cm)\n")+
-  #scale_x_discrete(limits=rev(levels(???)))
+  scale_y_reverse()
 #Call the graph
 AvgDOC
