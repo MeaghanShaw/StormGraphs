@@ -29,5 +29,20 @@ stormevents$SO42_mmolL<-(stormevents$SO42_mgL/96.06)
 pairs(stormevents[20:27])
 
 # Plot July 7 event for Fe and Mn
-#Jul717storm<-stormevents[which(stormevents$doy == "188")]
+Jul717storm<-stormevents[which(stormevents$doy == "188"),]
+library(ggplot2)
+yscale<-10
+
+two_ys<-ggplot(Jul717storm,aes(x=newdate))+
+  geom_line(aes(y=Q_m3s),colour="blue",size=1.2)+
+  geom_point(aes(y=Fe_mmolL/yscale,fill="orange"),colour="black",pch=21,size=2)+
+  geom_point(aes(y=Mn_mmolL/yscale,fill="green"),pch=21,colour="black",size=2)+
+  scale_y_continuous(sec.axis=sec_axis(~.*yscale,name="Concentration"))+
+  scale_fill_manual(guide="legend",name="ions",
+                    values=c("orange","green"),labels=c("Fe","Mn"))+
+  labs(y="Discharge",
+       x="Date")+
+  theme_bw()
+
+two_ys
 
