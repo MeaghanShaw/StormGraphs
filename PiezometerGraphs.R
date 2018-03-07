@@ -25,7 +25,7 @@ piezocat$Na_mmolL<-(piezocat$Na_mgL/22.99)
 piezoan$SO42_mmolL<-(piezoan$SO42_mgL/96.06)
 piezoan$Cl_mmolL<-(piezoan$Cl_mgL/35.453)
 
-#Std dev and std err
+#Cation std dev and std err
 library(plyr)
 piezocat.site.summary<-ddply(piezocat, c("sample_name","Depth_cm","Site"), summarise,
                          Almean = mean(Al_mmolL), Alsd = sd(Al_mmolL),
@@ -43,7 +43,21 @@ piezocat.site.summary<-ddply(piezocat, c("sample_name","Depth_cm","Site"), summa
                          Namean = mean(Na_mmolL), Nasd = sd(Na_mmolL),
                          Nasem = sd(Na_mmolL)/sqrt(length(Na_mmolL)))
 
+#Anion std dev and std err
+library(plyr)
+piezoan.site.summary<-ddply(piezoan, c("sample_name","Depth_cm","Site"), summarise,
+                             SO42mean = mean(SO42_mmolL), SO42sd = sd(SO42_mmolL),
+                             SO42sem = sd(SO42_mmolL)/sqrt(length(SO42_mmolL)),
+                             Clmean = mean(Cl_mmolL), Clsd = sd(Cl_mmolL),
+                             Clsem = sd(Cl_mmolL)/sqrt(length(Cl_mmolL)))
 
+#pH and EC std dev and std err
+library(plyr)
+pHandEC.site.summary<-ddply(pHandEC, c("sample_name","Depth_cm","Site"), summarise,
+                            pHmean = mean(pH), pHsd = sd(pH),
+                            pHsem = sd(pH)/sqrt(length(pH)),
+                            ECmean = mean(EC), ECsd = sd(EC),
+                            ECsem = sd(EC)/sqrt(length(EC)))
 
 #box and whisker plot of piezometer data and SO42-
 plot(piezoan$sample_name,piezoan$SO42_mmolL)
@@ -828,15 +842,22 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
 #Call the graph
 SBSO42
 
-#sort avg chem by depth
+#sort avg cation chem by depth
 avgchem<-piezocat.site.summary[order(piezocat.site.summary$Site, piezocat.site.summary$Depth_cm),]
 
+#sort avg anion chem by depth
+avganchem<-piezoan.site.summary[order(piezoan.site.summary$Site, piezoan.site.summary$Depth_cm),]
+
+#sort pH and EC avg chem by depth
+avgpHEC<-pHandEC.site.summary[order(pHandEC.site.summary$Site, pHandEC.site.summary$Depth_cm),]
 
 #Plots pH averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgpH<-ggplot(avgchem, aes(avg_pH,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgpH<-ggplot(avgpHEC, aes(pHmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgpHEC,aes(y=Depth_cm,x=pHmean,xmin=pHmean-pHsem,xmax=pHmean+pHsem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
@@ -844,46 +865,53 @@ AvgpH<-ggplot(avgchem, aes(avg_pH,depth_cm,fill=as.factor(site),shape=as.factor(
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\npH")+
-  ylab("Depth (cm)\n")
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgpH
 
 #Plots EC averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgEC<-ggplot(avgchem, aes(avg_EC,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgEC<-ggplot(avgpHEC, aes(ECmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgpHEC,aes(y=Depth_cm,x=ECmean,xmin=ECmean-ECsem,xmax=ECmean+ECsem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nEC")+
-  ylab("Depth (cm)\n")
+  xlab("\nSpecific Conductance ("~mu~"S"~cm^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgEC
 
 #Plots SO42- averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgSO42<-ggplot(avgchem, aes(avg_SO42_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgSO42<-ggplot(avganchem, aes(SO42mean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avganchem,aes(y=Depth_cm,x=SO42mean,xmin=SO42mean-SO42sem,xmax=SO42mean+SO42sem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nSO42- (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  xlab("\n"~SO[4]^2~"(mmol "~L^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgSO42
 
 
 #Plots Ca averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
 AvgCa<-ggplot(avgchem, aes(Camean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
@@ -902,82 +930,94 @@ AvgCa
 
 #Plots Fe averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgFe<-ggplot(avgchem, aes(avg_Fe_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgFe<-ggplot(avgchem, aes(Femean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgchem,aes(y=Depth_cm,x=Femean,xmin=Femean-Fesem,xmax=Femean+Fesem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nFe (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  xlab("\nFe (mmol "~L^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgFe
 
 #Plots K averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgK<-ggplot(avgchem, aes(avg_K_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgK<-ggplot(avgchem, aes(Kmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgchem,aes(y=Depth_cm,x=Kmean,xmin=Kmean-Ksem,xmax=Kmean+Ksem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nK (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  xlab("\nK (mmol "~L^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgK
 
 #Plots Mg averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgMg<-ggplot(avgchem, aes(avg_Mg_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgMg<-ggplot(avgchem, aes(Mgmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgchem,aes(y=Depth_cm,x=Mgmean,xmin=Mgmean-Mgsem,xmax=Mgmean+Mgsem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nMg (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  xlab("\nMg (mmol "~L^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgMg
 
 #Plots Mn averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgMn<-ggplot(avgchem, aes(avg_Mn_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgMn<-ggplot(avgchem, aes(Mnmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=avgchem,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nMn (mmol L-1)")+
-  ylab("Depth (cm)\n")
+  xlab("\nMn (mmol "~L^-1~")")+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
 #Call the graph
 AvgMn
 
 #Plots Na averages for all sites
 library(ggplot2)
-pal<-c("#ffffcc","#c2e699","#78c679")
+pal<-c("#e6550d","#fdae6b","#f7fcb9")
 shape1<-c(21, 22, 23)
-AvgNa<-ggplot(avgchem, aes(avg_Na_mmolL,depth_cm,fill=as.factor(site),shape=as.factor(site)))+
+AvgNa<-ggplot(avgchem, aes(Namean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
+  geom_errorbarh(data=avgchem,aes(y=Depth_cm,x=Namean,xmin=Namean-Nasem,xmax=Namean+Nasem),height=2.5)+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlim(0.3, 0.6)+
-  xlab("\nNa (mmol L-1)")+
+  xlab("\nNa (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
   scale_y_reverse()
 #Call the graph
