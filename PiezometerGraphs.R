@@ -869,6 +869,10 @@ AvgpH<-ggplot(avgpHEC, aes(pHmean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   scale_y_reverse()
 #Call the graph
 AvgpH
+#save to pdf
+pdf("AvgpHpiezo.pdf",height=6,width=8)
+AvgpH
+dev.off()
 
 #Plots EC averages for all sites
 library(ggplot2)
@@ -907,7 +911,10 @@ AvgSO42<-ggplot(avganchem, aes(SO42mean,Depth_cm,fill=as.factor(Site),shape=as.f
   scale_y_reverse()
 #Call the graph
 AvgSO42
-
+#save to pdf
+pdf("AvgSO42piezo.pdf",height=6,width=8)
+AvgSO42
+dev.off()
 
 #Plots Ca averages for all sites
 library(ggplot2)
@@ -946,6 +953,10 @@ AvgFe<-ggplot(avgchem, aes(Femean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   scale_y_reverse()
 #Call the graph
 AvgFe
+#save to pdf
+pdf("AvgFepiezo.pdf",height=6,width=8)
+AvgFe
+dev.off()
 
 #Plots K averages for all sites
 library(ggplot2)
@@ -1003,6 +1014,10 @@ AvgMn<-ggplot(avgchem, aes(Mnmean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   scale_y_reverse()
 #Call the graph
 AvgMn
+#save to pdf
+pdf("AvgMnpiezo.pdf",height=6,width=8)
+AvgMn
+dev.off()
 
 #Plots Na averages for all sites
 library(ggplot2)
@@ -1040,3 +1055,7 @@ AvgDOC<-ggplot(avgchem, aes(avg_DOC_mmolL,depth_cm,fill=as.factor(site),shape=as
   scale_y_reverse()
 #Call the graph
 AvgDOC
+#save to pdf
+pdf("AvgDOCpiezo.pdf",height=6,width=8)
+AvgDOC
+dev.off()

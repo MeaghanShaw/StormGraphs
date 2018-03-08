@@ -109,6 +109,10 @@ Oct_11_storm<-ggplot(Oct1117storm,aes(x=newdate))+
   theme_bw()
 
 Oct_11_storm
+#save to pdf
+pdf("Oct_11_storm.pdf",height=6,width=8)
+Oct_11_storm
+dev.off()
 
 #Pull out processed data sheet
 write.csv(Oct1117storm,"October1117storm.csv")
