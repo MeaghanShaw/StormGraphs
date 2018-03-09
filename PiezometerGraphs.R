@@ -1059,3 +1059,26 @@ AvgDOC
 pdf("AvgDOCpiezo.pdf",height=6,width=8)
 AvgDOC
 dev.off()
+
+#Merge BDP pH/EC and BDP cation data
+BDPchem<-merge(BDPcat,BDPpHEC)
+# Plot BDP pH and Fe by date
+library(ggplot2)
+yscale<-0.5
+
+BDP_pHFe_date<-ggplot(BDPchem,aes(x=newdate))+
+  geom_point(aes(y=pH),fill="purple",colour="black",pch=21,size=4)+
+  geom_point(aes(y=Fe_mmolL/yscale,fill="orange"),colour="black",pch=21,size=4)+
+  scale_y_continuous(sec.axis=sec_axis(~.*yscale,name="Concentration"))+
+  scale_fill_manual(guide="legend",name="ions",
+                    values=c("orange"),labels=c("Fe"))+
+  labs(y="pH",
+       x="Date")+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+BDP_pHFe_date
+#Save to PDF
+pdf("BDP_pHFe_date.pdf",height=6,width=8)
+BDP_pHFe_date
+dev.off()

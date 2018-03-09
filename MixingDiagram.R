@@ -26,7 +26,7 @@ basecatmix$Na_K<-(basecatmix$Na_mmolL/basecatmix$K_mmolL)
 
 #Plots base cation mixing diagram
 library(ggplot2)
-pal<-c("#ca0020","#f4a582","#0571b0","#c2a5cf")
+pal<-c("#ca0020","#fe9929","#969696","#225ea8")
 shape1<-c(21, 22, 23, 24)
 Basecatmixing<-ggplot(basecatmix, aes(basecatmix$Na_K,basecatmix$Ca_Mg,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_point(colour="black",size=4)+
@@ -54,7 +54,7 @@ basecatmix$logMnNa<-(log10(basecatmix$Mn_Na))
 
 #Plots Fe and Mn mixing diagram
 library(ggplot2)
-pal<-c("#ca0020","#f4a582","#0571b0","#c2a5cf")
+pal<-c("#ca0020","#fe9929","#969696","#225ea8")
 shape1<-c(21, 22, 23, 24)
 Metalsmixing<-ggplot(basecatmix, aes(basecatmix$logMnNa,basecatmix$logFeNa,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_point(colour="black",size=4)+
@@ -63,8 +63,8 @@ Metalsmixing<-ggplot(basecatmix, aes(basecatmix$logMnNa,basecatmix$logFeNa,fill=
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
-  xlab("\nMn/Na")+
-  ylab("Fe/Na")
+  xlab("Log(Mn/Na)")+
+  ylab("Log(Fe/Na)")
 #Call the graph
 Metalsmixing
 

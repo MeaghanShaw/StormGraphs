@@ -34,31 +34,32 @@ CQ$logH<-(log10(CQ$H_mgL))
 CQ$logEC<-(log10(CQ$EC))
 
 #Function to pull regression text out
-lm_eqn<-function(df){
-  m<-lm(y~x,df)
-  eq<-substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
-                 list(a = format(coef(m)[1], digits = 2),
-                      b = format(coef(m)[2], digits = 2),
-                      r2 = format(summary(m)$r.squared,digits=3)))
-  as.character(as.expression(eq))
-}
+#lm_eqn<-function(df){
+ # m<-lm(y~x,df)
+  #eq<-substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+           #      list(a = format(coef(m)[1], digits = 2),
+            #          b = format(coef(m)[2], digits = 2),
+            #          r2 = format(summary(m)$r.squared,digits=3)))
+  #as.character(as.expression(eq))
+#}
 #making plots
 
 #Ca plot
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logCa")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQCa<-ggplot(CQ, aes(logQ,logCa))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(Ca)\n")+
-  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+#  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQCa
 
@@ -71,17 +72,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logAl")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQAl<-ggplot(CQ, aes(logQ,logAl))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(Al)\n")+
-  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQAl
 
@@ -94,17 +96,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logFe")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQFe<-ggplot(CQ, aes(logQ,logFe))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(Fe)\n")+
-  geom_text(x=-3.5, y=-1.75, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQFe
 
@@ -117,17 +120,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logK")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQK<-ggplot(CQ, aes(logQ,logK))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(K)\n")+
-  geom_text(x=-3.5, y=-0.65, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQK
 
@@ -140,17 +144,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logMg")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQMg<-ggplot(CQ, aes(logQ,logMg))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(Mg)\n")+
-  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQMg
 
@@ -163,17 +168,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logMn")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQMn<-ggplot(CQ, aes(logQ,logMn))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(Mn)\n")+
-  geom_text(x=-3.5, y=-0.6, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQMn
 
@@ -186,17 +192,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logNa")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQNa<-ggplot(CQ, aes(logQ,logNa))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(Na)\n")+
-  geom_text(x=-3.5, y=-0.8, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  ylim(-2,1.5)+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQNa
 
@@ -209,17 +216,18 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logSO42")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQSO42<-ggplot(CQ, aes(logQ,logSO42))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
-  ylab("Log(SO42-)\n")+
-  geom_text(x=-3.5, y=0.9, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
+  ylab("Log("~SO[4]^2~"-, mmol"~L^-1~")")+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)+
+  ylim(-1.5,2)
 #Call the graph
 CQSO42
 
@@ -232,17 +240,17 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logH")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQH<-ggplot(CQ, aes(logQ,logH))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
-  ylab("Log(H+)\n")+
-  geom_text(x=-3.5, y=-5, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
+  ylab("Log("~H^+~", mmol"~L^-1~")\n")+
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQH
 
@@ -255,17 +263,17 @@ dev.off()
 library(ggplot2)
 pal="#c2a5cf"
 shape1=21
-df<-CQ[,c("logQ","logEC")]
-names(df)<-c("x","y")
+#df<-CQ[,c("logQ","logCa")]
+#names(df)<-c("x","y")
 CQEC<-ggplot(CQ, aes(logQ,logEC))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
-  xlab("\nLog(Q)")+
+  xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
   ylab("Log(EC)\n")+
-  geom_text(x=-3.5, y=3.15, label = lm_eqn(df),parse=TRUE)+
-  geom_smooth(method=lm,se=FALSE)
+  #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
+  geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQEC
 
@@ -273,3 +281,24 @@ CQEC
 pdf("CQEC.pdf",height=6,width=8)
 CQEC
 dev.off()
+
+#All CQ ions plot
+library(ggplot2)
+#pal="#c2a5cf"
+#shape1=21
+#df<-CQ[,c("logQ","logNa")]
+#names(df)<-c("x","y")
+CQ<-ggplot(CQ, aes(x=logQ))+
+  geom_point(aes(y=logMn,fill="#67a9cf"),pch=21,colour="black",size=2)+
+  geom_point(aes(y=logNa,fill="purple"),pch=21,colour="black",size=2)+
+  geom_point(aes(y=logCa,fill="red"),pch=21,colour="black",size=2)+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Ion"),values=c("#67a9cf"="#67a9cf","purple"="purple","red"="red"),
+         labels=c("#67a9cf"="Mn","purple"="Na","red"="Ca"))+
+  xlab("\nLog(Q)")+
+  ylab("Log(Concentration)\n")
+#  geom_text(x=-3.5, y=-0.8, label = lm_eqn(df),parse=TRUE)+
+ # geom_smooth(method=lm,se=FALSE)
+#Call the graph
+CQ

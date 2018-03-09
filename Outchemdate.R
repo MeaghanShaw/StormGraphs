@@ -18,6 +18,32 @@ library(lubridate)
 Outchem$newdate<-mdy(Outchem$Date)
 Outchem$doy<-yday(Outchem$newdate)
 
+#pH and EC std dev and std err
+library(plyr)
+outlet.summary<-ddply(Outchem, c("Site"), summarise,
+                            pHmean = mean(pH, na.rm=TRUE), pHsd = sd(pH, na.rm=TRUE),
+                            pHsem = sd(pH, na.rm=TRUE)/sqrt(length(pH, na.rm=TRUE)),
+                            ECmean = mean(EC), ECsd = sd(EC),
+                            ECsem = sd(EC)/sqrt(length(EC)),
+                      Almean = mean(Al_mmolL), Alsd = sd(Al_mmolL),
+                      Alsem = sd(Al_mmolL)/sqrt(length(Al_mmolL)),
+                      Camean = mean(Ca_mmolL), Casd = sd(Ca_mmolL),
+                      Casem = sd(Ca_mmolL)/sqrt(length(Ca_mmolL)),
+                      Femean = mean(Fe_mmolL), Fesd = sd(Fe_mmolL),
+                      Fesem = sd(Fe_mmolL)/sqrt(length(Fe_mmolL)),
+                      Kmean = mean(K_mmolL), Ksd = sd(K_mmolL),
+                      Ksem = sd(K_mmolL)/sqrt(length(K_mmolL)),
+                      Mgmean = mean(Mg_mmolL), Mgsd = sd(Mg_mmolL),
+                      Mgsem = sd(Mg_mmolL)/sqrt(length(Mg_mmolL)),
+                      Mnmean = mean(Mn_mmolL), Mnsd = sd(Mn_mmolL),
+                      Mnsem = sd(Mn_mmolL)/sqrt(length(Mn_mmolL)),
+                      Namean = mean(Na_mmolL), Nasd = sd(Na_mmolL),
+                      Nasem = sd(Na_mmolL)/sqrt(length(Na_mmolL)),
+                      SO42mean = mean(SO42_mmolL), SO42sd = sd(SO42_mmolL),
+                      SO42sem = sd(SO42_mmolL)/sqrt(length(SO42_mmolL)),
+                      Clmean = mean(Cl_mmolL), Clsd = sd(Cl_mmolL),
+                      Clsem = sd(Cl_mmolL)/sqrt(length(Cl_mmolL)))
+
 #Plots outlet pH by date
 library(ggplot2)
 pal="#c2a5cf"
@@ -233,4 +259,25 @@ OutCl
 #save to pdf
 pdf("OutCl.pdf",height=6,width=8)
 OutCl
+dev.off()
+
+# Plot outlet pH and Fe by date
+library(ggplot2)
+yscale<-0.05
+
+Out_pHFe_date<-ggplot(Outchem,aes(x=newdate))+
+  geom_point(aes(y=pH),fill="purple",colour="black",pch=21,size=4)+
+  geom_point(aes(y=Fe_mmolL/yscale,fill="orange"),colour="black",pch=21,size=4)+
+  scale_y_continuous(sec.axis=sec_axis(~.*yscale,name="Concentration"))+
+  scale_fill_manual(guide="legend",name="ions",
+                    values=c("orange"),labels=c("Fe"))+
+  labs(y="pH",
+       x="Date")+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+Out_pHFe_date
+#Save to PDF
+pdf("Out_pHFe_date.pdf",height=6,width=8)
+Out_pHFe_date
 dev.off()
