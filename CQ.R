@@ -271,7 +271,7 @@ CQEC<-ggplot(CQ, aes(logQ,logEC))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"))+
   xlab("\nLog(Q,"~m^3~" "~s^-1~")")+
-  ylab("Log(EC)\n")+
+  ylab("Log(Specific conductance, "~mu~"S "~cm^-1~")\n")+
   #  geom_text(x=-3.5, y=0.5, label = lm_eqn(df),parse=TRUE)+
   geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
@@ -282,23 +282,52 @@ pdf("CQEC.pdf",height=6,width=8)
 CQEC
 dev.off()
 
-#All CQ ions plot
+#Reshape the data for basecation CQ plot
+CQvarsforbasemelt<-c("logQ","logCa","logK","logMg","logNa")
+CQforbasemelt<-CQ[CQvarsforbasemelt]
+library(reshape2)
+longbaseCQ<-melt(CQforbasemelt,id.vars=c("logQ"),variable.name="ion",value.name="concentration")
+
+#All base cations plot
+#Add in lines and why is the legend not working?
 library(ggplot2)
 #pal="#c2a5cf"
 #shape1=21
 #df<-CQ[,c("logQ","logNa")]
 #names(df)<-c("x","y")
-CQ<-ggplot(CQ, aes(x=logQ))+
-  geom_point(aes(y=logMn,fill="#67a9cf"),pch=21,colour="black",size=2)+
-  geom_point(aes(y=logNa,fill="purple"),pch=21,colour="black",size=2)+
-  geom_point(aes(y=logCa,fill="red"),pch=21,colour="black",size=2)+
+pal<-c("#ffffcc","#c2e699","#78c679","#238443")
+CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=ion))+
+  geom_point(colour="black",size=4,pch=21)+
   theme_bw()+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Ion"),values=c("#67a9cf"="#67a9cf","purple"="purple","red"="red"),
-         labels=c("#67a9cf"="Mn","purple"="Na","red"="Ca"))+
-  xlab("\nLog(Q)")+
-  ylab("Log(Concentration)\n")
+  scale_fill_manual(name="Ion",breaks=c("logCa","logK","logMg","logNa"),labels=c("Ca","K","Mg","Na"),values=pal)+
+  xlab("\nLog(Q, "~m^3~" "~s^-1~")")
+ # ylab("Log(Concentration, mmol "~L^-1~")")
 #  geom_text(x=-3.5, y=-0.8, label = lm_eqn(df),parse=TRUE)+
  # geom_smooth(method=lm,se=FALSE)
 #Call the graph
-CQ
+CQbasecat
+
+#Plot amd derived CQ (Fe, Mn, Al, SO42-)
+#All CQ ions plot
+#Add in lines and why is the legend not working?
+library(ggplot2)
+#pal="#c2a5cf"
+#shape1=21
+#df<-CQ[,c("logQ","logNa")]
+#names(df)<-c("x","y")
+CQAMD<-ggplot(CQ, aes(x=logQ))+
+  geom_point(aes(y=logFe,fill="blue"),pch=21,colour="black",size=2)+
+  geom_point(aes(y=logMn,fill="purple"),pch=21,colour="black",size=2)+
+  geom_point(aes(y=logAl,fill="red"),pch=21,colour="black",size=2)+
+  geom_point(aes(y=logSO42,fill="orange"),pch=21,colour="black",size=2)+
+  theme_bw()+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Ion"),values=c("blue","purple","red","orange"),
+         labels=c("Fe","Mn","Al","SO42-"))+
+  xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
+  ylab("Log(Concentration, mmol "~L^-1~")\n")
+#  geom_text(x=-3.5, y=-0.8, label = lm_eqn(df),parse=TRUE)+
+# geom_smooth(method=lm,se=FALSE)
+#Call the graph
+CQAMD

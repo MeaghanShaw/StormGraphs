@@ -55,6 +55,7 @@ library(ggplot2)
 yscale<-10
 
 Jul_13_storm<-ggplot(Jul1317storm,aes(x=newdate))+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   geom_line(aes(y=Q_m3s),colour="blue",size=1.2)+
   geom_point(aes(y=Fe_mmolL/yscale,fill="orange"),colour="black",pch=21,size=2)+
   geom_point(aes(y=Mn_mmolL/yscale,fill="green"),pch=21,colour="black",size=2)+

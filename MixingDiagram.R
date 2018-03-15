@@ -24,6 +24,13 @@ basecatmix$Na_mmolL<-(basecatmix$Na_mgL/22.99)
 basecatmix$Ca_Mg<-(basecatmix$Ca_mmolL/basecatmix$Mg_mmolL)
 basecatmix$Na_K<-(basecatmix$Na_mmolL/basecatmix$K_mmolL)
 
+#Ca/Mg std dev and std err
+library(plyr)
+CaMgstderr.site.summary<-ddply(basecatmix, c("sample_name","Depth_cm","Site"), summarise,
+                            CaMgmean = mean(Ca_Mg,na.rm=TRUE), CaMgsd = sd(Ca_Mg,na.rm=TRUE),
+                            CaMgsem = sd(Ca_Mg,na.rm=TRUE)/sqrt(length(Ca_Mg)))
+                    
+
 #Plots base cation mixing diagram
 library(ggplot2)
 pal<-c("#ca0020","#fe9929","#969696","#225ea8")
@@ -36,7 +43,8 @@ Basecatmixing<-ggplot(basecatmix, aes(basecatmix$Na_K,basecatmix$Ca_Mg,fill=as.f
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nNa/K")+
-  ylab("Ca/Mg")
+  ylab("Ca/Mg")+
+  theme(legend.position="bottom")
 #Call the graph
 Basecatmixing
 
@@ -64,7 +72,8 @@ Metalsmixing<-ggplot(basecatmix, aes(basecatmix$logMnNa,basecatmix$logFeNa,fill=
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("Log(Mn/Na)")+
-  ylab("Log(Fe/Na)")
+  ylab("Log(Fe/Na)")+
+  theme(legend.position="bottom")
 #Call the graph
 Metalsmixing
 
@@ -74,9 +83,7 @@ Metalsmixing
 dev.off()
 
 #Access LC, BDP, and outlet subset of cation data and make mix by date file
-Mixbydate<-basecatmix[which(basecatmix$sample_name == "BDP"
-                       | basecatmix$sample_name == "LC" 
-                       | basecatmix$sample_name == "OUT"),]
+Mixbydate<-basecatmix[which(basecatmix$sample_name == "OUT"),]
 
 #convert date
 library(lubridate)
@@ -85,22 +92,23 @@ Mixbydate$doy<-yday(Mixbydate$newdate)
 
 #Plots Ca/Mg by date
 library(ggplot2)
-pal<-c("#ca0020","#0571b0","#c2a5cf")
-shape1<-c(21, 22, 23)
-CaMgbydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Ca_Mg,fill=as.factor(Site),shape=as.factor(Site)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
+CaMgbydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Ca_Mg))+
+   annotate("rect",fill="blue",alpha=0.5,xmin=as.Date("2017-03-20"),xmax=as.Date("2017-12-01"),ymin=1.62685682,ymax=1.72463918)+
+  annotate("rect",fill="red",alpha=1,xmin=as.Date("2017-03-20"),xmax=as.Date("2017-12-01"),ymin=1.20536467,ymax=1.23625933)+
   theme_bw(base_size=20)+
+  geom_point(colour="black",size=4,pch=21,fill="purple")+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
-  ylab("Ca/Mg")
+  ylab("Ca/Mg")+
+  scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  ylim(1,2)+
+  theme(legend.position="bottom")
 #Call the graph
 CaMgbydate
 
 #save to pdf
-pdf("CaMgbydate.pdf",height=6,width=8)
+pdf("CaMgbydate.pdf",height=8,width=8)
 CaMgbydate
 dev.off()
 
@@ -116,7 +124,8 @@ FeNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Fe_Na,fill=as.factor(Site),s
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
-  ylab("Fe/Na")
+  ylab("Fe/Na")+
+  theme(legend.position="bottom")
 #Call the graph
 FeNabydate
 
@@ -137,7 +146,8 @@ MnNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Mn_Na,fill=as.factor(Site),s
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
-  ylab("Mn/Na")
+  ylab("Mn/Na")+
+  theme(legend.position="bottom")
 #Call the graph
 MnNabydate
 

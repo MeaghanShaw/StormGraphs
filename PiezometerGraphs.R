@@ -111,38 +111,31 @@ BDPEC
 
 #Access BDP subset of piezocat data and make BDP file
 
-BDPpiezocat<-piezocat[which(piezocat$sample_name == "P1"
+BDPpiezocat<-piezocat[which(piezocat$sample_name == "BDP"
+                      | piezocat$sample_name == "P1"
                       | piezocat$sample_name == "P2" | piezocat$sample_name == "P3"
                       | piezocat$sample_name == "P4"),]
 
-BDPcat<-piezocat[which(piezocat$sample_name == "BDP"),]
-
 #Access BDP subset of piezoan data and make BDP file
 
-BDPpiezoan<-piezoan[which(piezoan$sample_name == "P1"
+BDPpiezoan<-piezoan[which(piezoan$sample_name == "BDP" | piezoan$sample_name == "P1"
                             | piezoan$sample_name == "P2" | piezoan$sample_name == "P3"
                             | piezoan$sample_name == "P4"),]
-
-BDPan<-piezoan[which(piezoan$sample_name == "BDP"),]
 
 #Pulls out day of year to plot as x variable (makes scatter plot)
 library(lubridate)
 BDPpiezocat$newdate<-mdy(BDPpiezocat$date)
 BDPpiezocat$doy<-yday(BDPpiezocat$newdate)
-BDPcat$newdate<-mdy(BDPcat$date)
-BDPcat$doy<-yday(BDPcat$newdate)
 BDPpiezoan$newdate<-mdy(BDPpiezoan$date)
 BDPpiezoan$doy<-yday(BDPpiezoan$newdate)
-BDPan$newdate<-mdy(BDPan$date)
-BDPan$doy<-yday(BDPan$newdate)
 
 #Plots doy as x and Ca_mmol/L as y
 plot(BDPpiezocat$doy,BDPpiezocat$Ca_mmolL)
 
 #Plots BDP Ca data by date and has piezometer data
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoCa<-ggplot(BDPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -151,26 +144,9 @@ BDPpiezoCa<-ggplot(BDPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),sh
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Ca (mmol L-1)")
+  ylab("Ca (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoCa
-
-#Plots surface BDP Ca data by date
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPCa<-ggplot(BDPcat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Ca (mmol L-1)")
-#how do I get rid of the legend for this graph?
-#Call the graph
-BDPCa
 
 #save to pdf
 pdf("BDPCa.pdf",height=6,width=8)
@@ -179,8 +155,8 @@ dev.off()
 
 #Plots BDP Fe data by date and has piezometer depths
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoFe<-ggplot(BDPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -189,30 +165,14 @@ BDPpiezoFe<-ggplot(BDPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),sh
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Fe (mmol L-1)")
+  ylab("Fe (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoFe
 
-#Plots BDP surface Fe data by date
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPFe<-ggplot(BDPcat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Fe (mmol L-1)")
-#Call the graph
-BDPFe
-
 #Plots BDP K data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoK<-ggplot(BDPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -221,30 +181,14 @@ BDPpiezoK<-ggplot(BDPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("K (mmol L-1)")
+  ylab("K (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoK
 
-#Plots BDP surface K data by date 
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPK<-ggplot(BDPcat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("K (mmol L-1)")
-#Call the graph
-BDPK
-
 #Plots BDP Mg data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoMg<-ggplot(BDPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -253,30 +197,14 @@ BDPpiezoMg<-ggplot(BDPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),sh
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Mg (mmol L-1)")
+  ylab("Mg (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoMg
 
-#Plots BDP surface Mg data by date 
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPMg<-ggplot(BDPcat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Mg (mmol L-1)")
-#Call the graph
-BDPMg
-
 #Plots BDP Mn data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoMn<-ggplot(BDPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -285,30 +213,14 @@ BDPpiezoMn<-ggplot(BDPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),sh
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Mn (mmol L-1)")
+  ylab("Mn (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoMn
 
-#Plots BDP surface Mn data by date
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPMn<-ggplot(BDPcat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Mn (mmol L-1)")
-#Call the graph
-BDPMn
-
 #Plots BDP Na data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoNa<-ggplot(BDPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -317,30 +229,14 @@ BDPpiezoNa<-ggplot(BDPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),sh
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Na (mmol L-1)")
+  ylab("Na (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoNa
 
-#Plots BDP surface Na data by date
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPNa<-ggplot(BDPcat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Na (mmol L-1)")
-#Call the graph
-BDPNa
-
 #Plots BDP SO42 data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
+shape1<-c(21, 22, 23, 24,25)
 BDPpiezoSO42<-ggplot(BDPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -349,25 +245,9 @@ BDPpiezoSO42<-ggplot(BDPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm)
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("SO42- (mmol L-1)")
+  ylab("SO42- (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoSO42
-
-#Plots BDP SO42 data by date and has all piezometer depths
-library(ggplot2)
-pal<-c("#bd0026")
-shape1<-c(21)
-BDPSO42<-ggplot(BDPan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("SO42- (mmol L-1)")
-#Call the graph
-BDPSO42
 
 #Access DP subset of pH and EC data and make DP file
 DPpHEC<-pHandEC[which(pHandEC$sample_name == "DP"
@@ -415,38 +295,30 @@ DPEC
 
 #Access DP subset of piezocat data and make DP file
 
-DPpiezocat<-piezocat[which(piezocat$sample_name == "P5"
+DPpiezocat<-piezocat[which(piezocat$sample_name == "DP" | piezocat$sample_name == "P5"
                             | piezocat$sample_name == "P6" | piezocat$sample_name == "P7"
                             | piezocat$sample_name == "P8"),]
 
-DPcat<-piezocat[which(piezocat$sample_name == "DP"),]
-
 #Access DP subset of piezoan data and make DP file
 
-DPpiezoan<-piezoan[which(piezoan$sample_name == "P5"
+DPpiezoan<-piezoan[which(piezoan$sample_name == "DP" | piezoan$sample_name == "P5"
                           | piezoan$sample_name == "P6" | piezoan$sample_name == "P7"
                           | piezoan$sample_name == "P8"),]
-
-DPan<-piezoan[which(piezoan$sample_name == "DP"),]
 
 #Pulls out day of year to plot as x variable (makes scatter plot)
 library(lubridate)
 DPpiezocat$newdate<-mdy(DPpiezocat$date)
 DPpiezocat$doy<-yday(DPpiezocat$newdate)
-DPcat$newdate<-mdy(DPcat$date)
-DPcat$doy<-yday(DPcat$newdate)
 DPpiezoan$newdate<-mdy(DPpiezoan$date)
 DPpiezoan$doy<-yday(DPpiezoan$newdate)
-DPan$newdate<-mdy(DPan$date)
-DPan$doy<-yday(DPan$newdate)
 
 #Plots doy as x and Ca_mmol/L as y
 plot(DPpiezocat$doy,DPpiezocat$Ca_mmolL)
 
 #Plots DP Ca data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoCa<-ggplot(DPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -455,30 +327,14 @@ DPpiezoCa<-ggplot(DPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Ca (mmol L-1)")
+  ylab("Ca (mmol "~L^-1~")")
 #Call the graph
 DPpiezoCa
 
-#Plots DP surface Ca data by date 
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPCa<-ggplot(DPcat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Ca (mmol L-1)")
-#Call the graph
-DPCa
-
 #Plots DP Fe data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoFe<-ggplot(DPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -487,30 +343,14 @@ DPpiezoFe<-ggplot(DPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Fe (mmol L-1)")
+  ylab("Fe (mmol "~L^-1~")")
 #Call the graph
 DPpiezoFe
 
-#Plots DP surface Fe data by date 
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPFe<-ggplot(DPcat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Fe (mmol L-1)")
-#Call the graph
-DPFe
-
 #Plots DP K data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoK<-ggplot(DPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -519,30 +359,14 @@ DPpiezoK<-ggplot(DPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("K (mmol L-1)")
+  ylab("K (mmol "~L^-1~")")
 #Call the graph
 DPpiezoK
 
-#Plots DP surface K data by date 
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPK<-ggplot(DPcat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("K (mmol L-1)")
-#Call the graph
-DPK
-
 #Plots DP Mg data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoMg<-ggplot(DPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -551,30 +375,14 @@ DPpiezoMg<-ggplot(DPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Mg (mmol L-1)")
+  ylab("Mg (mmol "~L^-1~")")
 #Call the graph
 DPpiezoMg
 
-#Plots DP surface Mg data by date 
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPMg<-ggplot(DPcat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Mg (mmol L-1)")
-#Call the graph
-DPMg
-
 #Plots DP Mn data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoMn<-ggplot(DPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -583,30 +391,14 @@ DPpiezoMn<-ggplot(DPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Mn (mmol L-1)")
+  ylab("Mn (mmol "~L^-1~")")
 #Call the graph
 DPpiezoMn
 
-#Plots DP surface Mn data by date 
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPMn<-ggplot(DPcat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Mn (mmol L-1)")
-#Call the graph
-DPMn
-
 #Plots DP Na data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoNa<-ggplot(DPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -615,30 +407,14 @@ DPpiezoNa<-ggplot(DPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Na (mmol L-1)")
+  ylab("Na (mmol "~L^-1~")")
 #Call the graph
 DPpiezoNa
 
-#Plots DP surface Na data by date 
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPNa<-ggplot(DPcat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("Na (mmol L-1)")
-#Call the graph
-DPNa
-
 #Plots DP SO42 data by date and has all piezometer depths
 library(ggplot2)
-pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e")
-shape1<-c(21, 22, 23, 24)
+pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
+shape1<-c(21, 22, 23, 24,25)
 DPpiezoSO42<-ggplot(DPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -647,25 +423,9 @@ DPpiezoSO42<-ggplot(DPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),s
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("SO42- (mmol L-1)")
+  ylab("SO42- (mmol "~L^-1~")")
 #Call the graph
 DPpiezoSO42
-
-#Plots DP surface SO42 data by date
-library(ggplot2)
-pal<-c("#993404")
-shape1<-c(21)
-DPSO42<-ggplot(DPan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
-  xlab("\nDate")+
-  ylab("SO42- (mmol L-1)")
-#Call the graph
-DPSO42
 
 #Access SB subset of pH and EC data and make DP file
 SBpHEC<-pHandEC[which(pHandEC$sample_name == "P9" 
@@ -741,7 +501,7 @@ SBCa<-ggplot(SBpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Ca (mmol L-1)")
+  ylab("Ca (mmol "~L^-1~")")
 #Call the graph
 SBCa
 
@@ -758,7 +518,7 @@ SBFe<-ggplot(SBpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Fe (mmol L-1)")
+  ylab("Fe (mmol "~L^-1~")")
 #Call the graph
 SBFe
 
@@ -774,7 +534,7 @@ SBK<-ggplot(SBpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.fa
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("K (mmol L-1)")
+  ylab("K (mmol "~L^-1~")")
 #Call the graph
 SBK
 
@@ -790,7 +550,7 @@ SBMg<-ggplot(SBpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Mg (mmol L-1)")
+  ylab("Mg (mmol "~L^-1~")")
 #Call the graph
 SBMg
 
@@ -806,7 +566,7 @@ SBMn<-ggplot(SBpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Mn (mmol L-1)")
+  ylab("Mn (mmol "~L^-1~")")
 #Call the graph
 SBMn
 
@@ -822,7 +582,7 @@ SBNa<-ggplot(SBpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("Na (mmol L-1)")
+  ylab("Na (mmol "~L^-1~")")
 #Call the graph
 SBNa
 
@@ -838,9 +598,27 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   xlab("\nDate")+
-  ylab("SO42- (mmol L-1)")
+  ylab("SO42- (mmol "~L^-1~")")
 #Call the graph
 SBSO42
+
+#Put all SB plots in one figure
+library(gridExtra)
+library(lubridate)
+startdate<-"2017-04-10"
+xposition<-date(startdate)
+SBCa.1<-SBCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=5.8,label="A",size=14)
+SBFe.1<-SBFe+guides(fill=FALSE,shape=FALSE)
+SBK.1<-SBK+guides(fill=FALSE,shape=FALSE)
+SBMg.1<-SBMg+guides(fill=FALSE,shape=FALSE)
+SBMn.1<-SBMn+guides(fill=FALSE,shape=FALSE)
+SBNa.1<-SBSO42+guides(fill=FALSE,shape=FALSE)
+grid.arrange(arrangeGrob(SBCa.1,SBMg.1,SBK.1,SBNa.1,SBFe.1,SBMn.1,SBSO42, ncol=2, widths=c(1,1)))
+
+#Save to PDF?
+pdf("SBPiezoGraphs.pdf",height=20,width=20)
+grid.arrange(arrangeGrob(SBCa.1,SBMg.1,SBK.1,SBNa.1,SBFe.1,SBMn.1,SBSO42, ncol=2, widths=c(1,1)))
+dev.off()
 
 #sort avg cation chem by depth
 avgchem<-piezocat.site.summary[order(piezocat.site.summary$Site, piezocat.site.summary$Depth_cm),]
@@ -950,7 +728,8 @@ AvgFe<-ggplot(avgchem, aes(Femean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nFe (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  scale_y_reverse()+
+  theme(legend.position="bottom")
 #Call the graph
 AvgFe
 #save to pdf
@@ -1011,7 +790,8 @@ AvgMn<-ggplot(avgchem, aes(Mnmean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nMn (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  scale_y_reverse()+
+  theme(legend.position="bottom")
 #Call the graph
 AvgMn
 #save to pdf
@@ -1082,3 +862,8 @@ BDP_pHFe_date
 pdf("BDP_pHFe_date.pdf",height=6,width=8)
 BDP_pHFe_date
 dev.off()
+
+#Merge all piezometer data
+allpiezoion<-merge(piezocat,piezoan)
+#export csv file
+write.csv(allpiezoion,"PiezometerCationandAnion.csv")
