@@ -148,11 +148,6 @@ BDPpiezoCa<-ggplot(BDPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),sh
 #Call the graph
 BDPpiezoCa
 
-#save to pdf
-pdf("BDPCa.pdf",height=6,width=8)
-BDPCa
-dev.off()
-
 #Plots BDP Fe data by date and has piezometer depths
 library(ggplot2)
 pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
@@ -248,6 +243,25 @@ BDPpiezoSO42<-ggplot(BDPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm)
   ylab("SO42- (mmol "~L^-1~")")
 #Call the graph
 BDPpiezoSO42
+
+#Put all BDP plots in one figure
+library(gridExtra)
+library(lubridate)
+startdate<-"2017-03-25"
+xposition<-date(startdate)
+BDPCa.1<-BDPpiezoCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=8.6,label="A",size=14)
+BDPFe.1<-BDPpiezoFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=1.9,label="E",size=14)
+BDPK.1<-BDPpiezoK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.65,label="C",size=14)
+BDPMg.1<-BDPpiezoMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.3,label="B",size=14)
+BDPMn.1<-BDPpiezoMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.83,label="F",size=14)
+BDPNa.1<-BDPpiezoNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.75,label="D",size=14)
+BDPSO42.1<-BDPpiezoSO42+annotate("text",x=xposition,y=30,label="G",size=14)
+grid.arrange(arrangeGrob(BDPCa.1,BDPMg.1,BDPK.1,BDPNa.1,BDPFe.1,BDPMn.1,BDPSO42.1, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("BDPPiezoGraphs.pdf",height=20,width=20)
+grid.arrange(arrangeGrob(BDPCa.1,BDPMg.1,BDPK.1,BDPNa.1,BDPFe.1,BDPMn.1,BDPSO42.1, ncol=2, widths=c(1,1)))
+dev.off()
 
 #Access DP subset of pH and EC data and make DP file
 DPpHEC<-pHandEC[which(pHandEC$sample_name == "DP"
@@ -427,6 +441,25 @@ DPpiezoSO42<-ggplot(DPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),s
 #Call the graph
 DPpiezoSO42
 
+#Put all DP plots in one figure
+library(gridExtra)
+library(lubridate)
+startdate<-"2017-03-27"
+xposition<-date(startdate)
+DPCa.1<-DPpiezoCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=7.8,label="A",size=14)
+DPFe.1<-DPpiezoFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=2.8,label="E",size=14)
+DPK.1<-DPpiezoK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.3,label="C",size=14)
+DPMg.1<-DPpiezoMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=5.8,label="B",size=14)
+DPMn.1<-DPpiezoMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.75,label="F",size=14)
+DPNa.1<-DPpiezoNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.73,label="D",size=14)
+DPSO42.1<-DPpiezoSO42+annotate("text",x=xposition,y=20,label="G",size=14)
+grid.arrange(arrangeGrob(DPCa.1,DPMg.1,DPK.1,DPNa.1,DPFe.1,DPMn.1,DPSO42.1, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("DPPiezoGraphs.pdf",height=20,width=20)
+grid.arrange(arrangeGrob(DPCa.1,DPMg.1,DPK.1,DPNa.1,DPFe.1,DPMn.1,DPSO42.1, ncol=2, widths=c(1,1)))
+dev.off()
+
 #Access SB subset of pH and EC data and make DP file
 SBpHEC<-pHandEC[which(pHandEC$sample_name == "P9" 
                       | pHandEC$sample_name == "P10"
@@ -492,7 +525,7 @@ plot(SBpiezocat$doy,SBpiezocat$Ca_mmolL)
 #Plots SB Ca data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24)
+shape1<-c(22, 23, 24, 25)
 SBCa<-ggplot(SBpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -509,7 +542,7 @@ SBCa
 #Plots SB Fe data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24)
+shape1<-c(22, 23, 24, 25)
 SBFe<-ggplot(SBpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -525,7 +558,7 @@ SBFe
 #Plots SB K data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24)
+shape1<-c(22, 23, 24, 25)
 SBK<-ggplot(SBpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -541,7 +574,7 @@ SBK
 #Plots SB Mg data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24)
+shape1<-c(22, 23, 24, 25)
 SBMg<-ggplot(SBpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -557,7 +590,7 @@ SBMg
 #Plots SB Mn data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24)
+shape1<-c(22, 23, 24, 25)
 SBMn<-ggplot(SBpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -573,7 +606,7 @@ SBMn
 #Plots SB Na data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24)
+shape1<-c(22, 23, 24,25)
 SBNa<-ggplot(SBpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -589,7 +622,7 @@ SBNa
 #Plots SB SO42 data by date and has all depths
 library(ggplot2)
 pal<-c("#ffffcc","#c2e699","#78c679","#238443")
-shape1<-c(21, 22, 23, 24, 25)
+shape1<-c(22, 23, 24, 25)
 SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
@@ -607,17 +640,20 @@ library(gridExtra)
 library(lubridate)
 startdate<-"2017-04-10"
 xposition<-date(startdate)
-SBCa.1<-SBCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=5.8,label="A",size=14)
-SBFe.1<-SBFe+guides(fill=FALSE,shape=FALSE)
-SBK.1<-SBK+guides(fill=FALSE,shape=FALSE)
-SBMg.1<-SBMg+guides(fill=FALSE,shape=FALSE)
-SBMn.1<-SBMn+guides(fill=FALSE,shape=FALSE)
-SBNa.1<-SBSO42+guides(fill=FALSE,shape=FALSE)
-grid.arrange(arrangeGrob(SBCa.1,SBMg.1,SBK.1,SBNa.1,SBFe.1,SBMn.1,SBSO42, ncol=2, widths=c(1,1)))
+startdate.1<-"2017-11-20"
+xposition.1<-date(startdate.1)
+SBCa.1<-SBCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6,label="A",size=14)
+SBFe.1<-SBFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.8,label="E",size=14)
+SBK.1<-SBK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.6,label="C",size=14)
+SBMg.1<-SBMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4,label="B",size=14)
+SBMn.1<-SBMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="F",size=14)
+SBNa.1<-SBNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="D",size=14)
+SBSO42.1<-SBSO42+annotate("text",x=xposition,y=14,label="G",size=12.5)
+grid.arrange(arrangeGrob(SBCa.1,SBMg.1,SBK.1,SBNa.1,SBFe.1,SBMn.1,SBSO42.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF?
 pdf("SBPiezoGraphs.pdf",height=20,width=20)
-grid.arrange(arrangeGrob(SBCa.1,SBMg.1,SBK.1,SBNa.1,SBFe.1,SBMn.1,SBSO42, ncol=2, widths=c(1,1)))
+grid.arrange(arrangeGrob(SBCa.1,SBMg.1,SBK.1,SBNa.1,SBFe.1,SBMn.1,SBSO42.1, ncol=2, widths=c(1,1)))
 dev.off()
 
 #sort avg cation chem by depth
@@ -689,10 +725,6 @@ AvgSO42<-ggplot(avganchem, aes(SO42mean,Depth_cm,fill=as.factor(Site),shape=as.f
   scale_y_reverse()
 #Call the graph
 AvgSO42
-#save to pdf
-pdf("AvgSO42piezo.pdf",height=6,width=8)
-AvgSO42
-dev.off()
 
 #Plots Ca averages for all sites
 library(ggplot2)
@@ -794,10 +826,6 @@ AvgMn<-ggplot(avgchem, aes(Mnmean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   theme(legend.position="bottom")
 #Call the graph
 AvgMn
-#save to pdf
-pdf("AvgMnpiezo.pdf",height=6,width=8)
-AvgMn
-dev.off()
 
 #Plots Na averages for all sites
 library(ggplot2)
@@ -817,6 +845,23 @@ AvgNa<-ggplot(avgchem, aes(Namean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   scale_y_reverse()
 #Call the graph
 AvgNa
+
+#Put all avg plots in one figure
+library(gridExtra)
+Yposition<-0
+AvgCa.1<-AvgCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="A",size=14)
+AvgFe.1<-AvgFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="E",size=14)
+AvgK.1<-AvgK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="C",size=14)
+AvgMg.1<-AvgMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="B",size=14)
+AvgMn.1<-AvgMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="F",size=14)
+AvgNa.1<-AvgNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="D",size=14)
+AvgSO42.1<-AvgSO42+annotate("text",x=6,y=Yposition,label="G",size=14)
+grid.arrange(arrangeGrob(AvgCa.1,AvgMg.1,AvgK.1,AvgNa.1,AvgFe.1,AvgMn.1,AvgSO42.1, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("SummaryGraphs.pdf",height=20,width=20)
+grid.arrange(arrangeGrob(AvgCa.1,AvgMg.1,AvgK.1,AvgNa.1,AvgFe.1,AvgMn.1,AvgSO42.1, ncol=2, widths=c(1,1)))
+dev.off()
 
 #Plots DOC averages for all sites
 library(ggplot2)

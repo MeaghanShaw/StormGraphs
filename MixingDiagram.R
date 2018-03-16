@@ -29,6 +29,18 @@ library(plyr)
 CaMgstderr.site.summary<-ddply(basecatmix, c("sample_name","Depth_cm","Site"), summarise,
                             CaMgmean = mean(Ca_Mg,na.rm=TRUE), CaMgsd = sd(Ca_Mg,na.rm=TRUE),
                             CaMgsem = sd(Ca_Mg,na.rm=TRUE)/sqrt(length(Ca_Mg)))
+
+#Fe/Na std dev and std err
+library(plyr)
+FeNastderr.site.summary<-ddply(basecatmix, c("sample_name","Depth_cm","Site"), summarise,
+                               FeNamean = mean(Fe_Na,na.rm=TRUE), FeNasd = sd(Fe_Na,na.rm=TRUE),
+                               FeNasem = sd(Fe_Na,na.rm=TRUE)/sqrt(length(Fe_Na)))
+
+#Mn/Na std dev and std err
+library(plyr)
+MnNastderr.site.summary<-ddply(basecatmix, c("sample_name","Depth_cm","Site"), summarise,
+                               MnNamean = mean(Mn_Na,na.rm=TRUE), MnNasd = sd(Mn_Na,na.rm=TRUE),
+                               MnNasem = sd(Mn_Na,na.rm=TRUE)/sqrt(length(Mn_Na)))
                     
 
 #Plots base cation mixing diagram
@@ -114,17 +126,17 @@ dev.off()
 
 #Plots Fe/Na by date
 library(ggplot2)
-pal<-c("#ca0020","#0571b0","#c2a5cf")
-shape1<-c(21, 22, 23)
-FeNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Fe_Na,fill=as.factor(Site),shape=as.factor(Site)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
+FeNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Fe_Na))+
+  annotate("rect",fill="blue",alpha=1,xmin=as.Date("2017-03-20"),xmax=as.Date("2017-12-01"),ymin=0.01638548,ymax=0.02895888)+
+  annotate("rect",fill="red",alpha=1,xmin=as.Date("2017-03-20"),xmax=as.Date("2017-12-01"),ymin=0.92076095,ymax=3.16853973)+
   theme_bw(base_size=20)+
+  geom_point(colour="black",size=4,pch=21,fill="purple")+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
   ylab("Fe/Na")+
+  scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  ylim(0,4)+
   theme(legend.position="bottom")
 #Call the graph
 FeNabydate
@@ -135,18 +147,19 @@ FeNabydate
 dev.off()
 
 #Plots Mn/Na by date
+#Need to update ymin/ymax for LC and BDP
 library(ggplot2)
-pal<-c("#ca0020","#0571b0","#c2a5cf")
-shape1<-c(21, 22, 23)
-MnNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Mn_Na,fill=as.factor(Site),shape=as.factor(Site)))+
-  geom_point(colour="black",size=4)+
-  scale_shape_manual(values=shape1)+    
-  scale_fill_manual(values=pal)+
+MnNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Mn_Na))+
+  annotate("rect",fill="blue",alpha=1,xmin=as.Date("2017-03-20"),xmax=as.Date("2017-12-01"),ymin=0.01638548,ymax=0.02895888)+
+  annotate("rect",fill="red",alpha=1,xmin=as.Date("2017-03-20"),xmax=as.Date("2017-12-01"),ymin=0.92076095,ymax=3.16853973)+
   theme_bw(base_size=20)+
+  geom_point(colour="black",size=4,pch=21,fill="purple")+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
-  ylab("Mn/Na")+
+  ylab("Fe/Na")+
+  scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  ylim(0,4)+
   theme(legend.position="bottom")
 #Call the graph
 MnNabydate
