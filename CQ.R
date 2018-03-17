@@ -93,7 +93,8 @@ CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=ion))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   scale_fill_manual(name="Ion",breaks=c("logCa","logK","logMg","logNa"),labels=c("Ca","K","Mg","Na"),values=pal)+
   xlab("\nLog(Q, "~m^3~" "~s^-1~")")
-  ylab("Log(Concentration, mmol "~L^-1~")")
+  ylab("Log(Concentration, mmol "~L^-1~")")+
+  theme(legend.position="bottom")
 
 #Call the graph
 CQbasecat
@@ -116,7 +117,20 @@ CQAMD<-ggplot(longamdCQ, aes(x=logQ,y=concentration,fill=ion))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   scale_fill_manual(name="Ion",breaks=c("logFe","logAl","logMn","logSO42"),labels=c("Fe","Al","Mn","S"~O[4]^2-""),values=pal)+
   xlab("\nLog(Q, "~m^3~" "~s^-1~")")
-  ylab("Log(Concentration, mmol "~L^-1~")")
+  ylab("Log(Concentration, mmol "~L^-1~")")+
+  theme(legend.position="bottom")
 
 #Call the graph
 CQAMD
+
+#Put CQ plots in one figure
+library(gridExtra)
+CQbasecat.1<-CQbasecat+annotate("text",x=-3.8,y=1,label="A",size=14)
+CQAMD.1<-CQAMD+annotate("text",x=-3.8,y=1.5,label="B",size=14)
+
+grid.arrange(arrangeGrob(CQbasecat.1,CQAMD.1, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("CQgraphs.pdf",height=10,width=10)
+grid.arrange(arrangeGrob(CQbasecat.1,CQAMD.1, ncol=2, widths=c(1,1)))
+dev.off()
