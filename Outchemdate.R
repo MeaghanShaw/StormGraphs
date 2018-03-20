@@ -260,8 +260,8 @@ library(lubridate)
 Discharge$newdate<-mdy_hm(Discharge$date_and_time)
 Discharge$doy<-yday(Discharge$newdate)
 library(ggplot2)
-OutQ<-ggplot(Discharge,aes(x=newdate))+
-  geom_point(aes(y=Q_m3s),colour="blue",size=1.2)+
+OutQ<-ggplot(Discharge,aes(Q_m3s,newdate))+
+  geom_line(colour="blue")+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
@@ -271,6 +271,6 @@ OutQ<-ggplot(Discharge,aes(x=newdate))+
 OutQ
 
 #Save to PDF
-pdf("OutQ.pdf",height=6,width=8)
+pdf("OutQ.pdf",height=20,width=20)
 OutQ
 dev.off()
