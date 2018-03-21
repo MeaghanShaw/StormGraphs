@@ -256,8 +256,9 @@ Out_pHFe_date
 dev.off()
 
 #plot Q by Date
+#WTF is going on with this code?!?!?!
 library(lubridate)
-Discharge$newdate<-mdy_hm(Discharge$date_and_time)
+Discharge$newdate<-mdy_hm(Discharge$date_and_time.1)
 Discharge$doy<-yday(Discharge$newdate)
 library(ggplot2)
 OutQ<-ggplot(Discharge,aes(Q_m3s,newdate))+
