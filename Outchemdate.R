@@ -256,12 +256,17 @@ Out_pHFe_date
 dev.off()
 
 #plot Q by Date
-#WTF is going on with this code?!?!?!
 library(lubridate)
-Discharge$newdate<-mdy_hm(Discharge$date_and_time.1)
+Discharge$newdate<-mdy_hm(Discharge$date_and_time)
 Discharge$doy<-yday(Discharge$newdate)
+Discharge$air_space<-(2*0.315)-(Discharge$level_m+0.315)
+Discharge$air_space<-ifelse(Discharge$air_space >= 0, Discharge$air_space, 0)
+Discharge$theta<-2*acos((0.315-Discharge$air_space)/0.315)
+Discharge$Area_water<-(0.5*pi*(0.315^2))-(0.315^2*(Discharge$theta-sin(Discharge$theta))/2)
+Discharge$Q_m3s<-Discharge$velocity_m_s*Discharge$Area_water
+Discharge$Q_m3s<-ifelse(Discharge$Q_m3s >= 0, Discharge$Q_m3s, 0)
 library(ggplot2)
-OutQ<-ggplot(Discharge,aes(Q_m3s,newdate))+
+OutQ<-ggplot(Discharge,aes(newdate,Q_m3s))+
   geom_line(colour="blue")+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
