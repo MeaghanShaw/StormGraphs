@@ -91,6 +91,7 @@ BDPpH<-ggplot(BDPpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(D
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  theme(legend.position="top")+
   xlab("\nDate")+
   ylab("pH")
 #Call the graph
@@ -108,7 +109,6 @@ BDPEC<-ggplot(BDPpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(D
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
-  theme(legend.position="bottom")+
   xlab("\nDate")+
   ylab("Specific conductance ("~mu~"S c"~m^-1~")")
 #Call the graph
@@ -119,8 +119,8 @@ library(gridExtra)
 library(lubridate)
 startdate<-"2017-03-24"
 xposition<-date(startdate)
-BDPpH.1<-BDPpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.4,label="A",size=14)
-BDPEC.1<-BDPEC+annotate("text",x=xposition,y=2100,label="B",size=14)
+BDPpH.1<-BDPpH+annotate("text",x=xposition,y=6.4,label="A",size=14)
+BDPEC.1<-BDPEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=2100,label="B",size=14)
 grid.arrange(arrangeGrob(BDPpH.1,BDPEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -188,6 +188,7 @@ BDPpiezoFe<-ggplot(BDPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),sh
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  theme(legend.position = "top")+
   xlab("\nDate")+
   ylab("Fe (mmol "~L^-1~")")
 #Call the graph
@@ -304,13 +305,13 @@ library(lubridate)
 startdate<-"2017-03-25"
 xposition<-date(startdate)
 BDPCa.1<-BDPpiezoCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=8.6,label="C",size=14)
-BDPFe.1<-BDPpiezoFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=1.95,label="A",size=14)
+BDPFe.1<-BDPpiezoFe+annotate("text",x=xposition,y=1.95,label="A",size=14)
 BDPK.1<-BDPpiezoK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.75,label="E",size=14)
 BDPMg.1<-BDPpiezoMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=7.5,label="D",size=14)
 BDPMn.1<-BDPpiezoMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.94,label="B",size=14)
 BDPNa.1<-BDPpiezoNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.75,label="F",size=14)
 BDPSO42.1<-BDPpiezoSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=30,label="G",size=14)
-BDPDOC.1<-BDPpiezoDOC+annotate("text",x=xposition,y=4,label="H",size=14)
+BDPDOC.1<-BDPpiezoDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4,label="H",size=14)
 grid.arrange(arrangeGrob(BDPFe.1,BDPMn.1,BDPCa.1,BDPMg.1,BDPK.1,BDPNa.1,BDPSO42.1,BDPDOC.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
@@ -342,6 +343,7 @@ DPpH<-ggplot(DPpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Dep
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  theme(legend.position = "top")+
   xlab("\nDate")+
   ylab("pH")
 #Call the graph
@@ -370,8 +372,8 @@ library(gridExtra)
 library(lubridate)
 startdate<-"2017-03-25"
 xposition<-date(startdate)
-DPpH.1<-DPpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.7,label="A",size=14)
-DPEC.1<-DPEC+annotate("text",x=xposition,y=1950,label="B",size=14)
+DPpH.1<-DPpH+annotate("text",x=xposition,y=6.7,label="A",size=14)
+DPEC.1<-DPEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=1950,label="B",size=14)
 grid.arrange(arrangeGrob(DPpH.1,DPEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -436,6 +438,7 @@ DPpiezoFe<-ggplot(DPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shap
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  theme(legend.position = "top")+
   xlab("\nDate")+
   ylab("Fe (mmol "~L^-1~")")
 #Call the graph
@@ -552,13 +555,13 @@ library(lubridate)
 startdate<-"2017-03-27"
 xposition<-date(startdate)
 DPCa.1<-DPpiezoCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=7.6,label="C",size=14)
-DPFe.1<-DPpiezoFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=2.8,label="A",size=14)
+DPFe.1<-DPpiezoFe+annotate("text",x=xposition,y=2.8,label="A",size=14)
 DPK.1<-DPpiezoK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.3,label="E",size=14)
 DPMg.1<-DPpiezoMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6,label="D",size=14)
 DPMn.1<-DPpiezoMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.75,label="B",size=14)
 DPNa.1<-DPpiezoNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.76,label="F",size=14)
 DPSO42.1<-DPpiezoSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=20,label="G",size=14)
-DPDOC.1<-DPpiezoDOC+annotate("text",x=xposition,y=6,label="H",size=14)
+DPDOC.1<-DPpiezoDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6,label="H",size=14)
 grid.arrange(arrangeGrob(DPFe.1,DPMn.1,DPCa.1,DPMg.1,DPK.1,DPNa.1,DPSO42.1,DPDOC.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
@@ -589,6 +592,7 @@ SBpH<-ggplot(SBpHEC, aes(newdate,pH,fill=as.factor(Depth_cm),shape=as.factor(Dep
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  theme(legend.position = "top")+
   xlab("\nDate")+
   ylab("pH")
 #Call the graph
@@ -618,8 +622,8 @@ library(gridExtra)
 library(lubridate)
 startdate<-"2017-03-27"
 xposition<-date(startdate)
-SBpH.1<-SBpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.5,label="A",size=14)
-SBEC.1<-SBEC+annotate("text",x=xposition,y=1850,label="B",size=14)
+SBpH.1<-SBpH+annotate("text",x=xposition,y=6.5,label="A",size=14)
+SBEC.1<-SBEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=1850,label="B",size=14)
 grid.arrange(arrangeGrob(SBpH.1,SBEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -683,6 +687,7 @@ SBFe<-ggplot(SBpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   ylim(0,8)+
+  theme(legend.position = "top")+
   xlab("\nDate")+
   ylab("Fe (mmol "~L^-1~")")
 #Call the graph
@@ -802,12 +807,12 @@ xposition<-date(startdate)
 startdate.1<-"2017-11-20"
 xposition.1<-date(startdate.1)
 SBCa.1<-SBCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.4,label="C",size=14)
-SBFe.1<-SBFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.8,label="A",size=14)
+SBFe.1<-SBFe+annotate("text",x=xposition,y=6.8,label="A",size=14)
 SBK.1<-SBK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.65,label="E",size=14)
 SBMg.1<-SBMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4,label="D",size=14)
 SBMn.1<-SBMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.85,label="B",size=14)
 SBNa.1<-SBNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="F",size=14)
-SBSO42.1<-SBSO42+annotate("text",x=xposition,y=14,label="G",size=12.5)
+SBSO42.1<-SBSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=14,label="G",size=12.5)
 SBDOC.1<-SBDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4.5,label="H",size=12.5)
 grid.arrange(arrangeGrob(SBFe.1,SBMn.1,SBCa.1,SBMg.1,SBK.1,SBNa.1,SBSO42.1,SBDOC.1, ncol=2, widths=c(1,1)))
 
@@ -925,7 +930,7 @@ AvgFe<-ggplot(avgchem, aes(Femean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   xlab("\nFe (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
   scale_y_reverse()+
-  theme(legend.position="bottom")
+  theme(legend.position="top")
 #Call the graph
 AvgFe
 
@@ -1028,12 +1033,12 @@ AvgDOC
 library(gridExtra)
 Yposition<-5
 AvgCa.1<-AvgCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="C",size=14)
-AvgFe.1<-AvgFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="A",size=14)
+AvgFe.1<-AvgFe+annotate("text",x=0,y=Yposition,label="A",size=14)
 AvgK.1<-AvgK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="E",size=14)
 AvgMg.1<-AvgMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="D",size=14)
 AvgMn.1<-AvgMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 AvgNa.1<-AvgNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="F",size=14)
-AvgSO42.1<-AvgSO42+annotate("text",x=0,y=Yposition,label="G",size=14)
+AvgSO42.1<-AvgSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="G",size=14)
 AvgDOC.1<-AvgDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="H",size=14)
 grid.arrange(arrangeGrob(AvgFe.1,AvgMn.1,AvgCa.1,AvgMg.1,AvgK.1,AvgNa.1,AvgSO42.1,AvgDOC.1, ncol=2, widths=c(1,1)))
 
@@ -1063,6 +1068,7 @@ DPAvgpH<-ggplot(DPPHEC, aes(pHmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\npH")+
   ylab("Depth (cm)\n")+
+  theme(legend.position = "top")+
   scale_y_reverse()
 #Call the graph
 DPAvgpH
@@ -1138,6 +1144,7 @@ DPAvgFe<-ggplot(DPAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=as
   xlim(0,3)+
   xlab("\nFe (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
+  theme(legend.position = "top")+
   scale_y_reverse()
 #Call the graph
 DPAvgFe
@@ -1240,13 +1247,13 @@ DPAvgDOC
 library(gridExtra)
 Yposition<-5
 DPAvgCA.1<-DPAvgCA+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="C",size=14)
-DPAvgFe.1<-DPAvgFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="A",size=14)
+DPAvgFe.1<-DPAvgFe+annotate("text",x=0,y=Yposition,label="A",size=14)
 DPAvgK.1<-DPAvgK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="E",size=14)
 DPAvgMg.1<-DPAvgMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="D",size=14)
 DPAvgMn.1<-DPAvgMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 DPAvgNa.1<-DPAvgNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.3,y=Yposition,label="F",size=14)
 DPAvgSO42.1<-DPAvgSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="G",size=14)
-DPAvgDOC.1<-DPAvgDOC+annotate("text",x=0,y=Yposition,label="H",size=14)
+DPAvgDOC.1<-DPAvgDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="H",size=14)
 grid.arrange(arrangeGrob(DPAvgFe.1,DPAvgMn.1,DPAvgCA.1,DPAvgMg.1,DPAvgK.1,DPAvgNa.1,DPAvgSO42.1,DPAvgDOC.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
@@ -1257,8 +1264,8 @@ dev.off()
 #Put DP pH and EC plots in one figure
 library(gridExtra)
 Yposition<-5
-DPAvgpH.1<-DPAvgpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=3,y=Yposition,label="A",size=14)
-DPAvgEC.1<-DPAvgEC+annotate("text",x=400,y=Yposition,label="B",size=14)
+DPAvgpH.1<-DPAvgpH+annotate("text",x=3,y=Yposition,label="A",size=14)
+DPAvgEC.1<-DPAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=400,y=Yposition,label="B",size=14)
 grid.arrange(arrangeGrob(DPAvgpH.1,DPAvgEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -1287,6 +1294,7 @@ BDPAvgpH<-ggplot(BDPPHEC, aes(pHmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\npH")+
   ylab("Depth (cm)\n")+
+  theme(legend.position = "top")+
   scale_y_reverse()
 #Call the graph
 BDPAvgpH
@@ -1360,6 +1368,7 @@ BDPAvgFe<-ggplot(BDPAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nFe (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
+  theme(legend.position = "top")+
   scale_y_reverse()
 #Call the graph
 BDPAvgFe
@@ -1461,13 +1470,13 @@ BDPAvgDOC
 library(gridExtra)
 Yposition<-5
 BDPAvgCA.1<-BDPAvgCA+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1,y=Yposition,label="C",size=14)
-BDPAvgFe.1<-BDPAvgFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="A",size=14)
+BDPAvgFe.1<-BDPAvgFe+annotate("text",x=0,y=Yposition,label="A",size=14)
 BDPAvgK.1<-BDPAvgK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="E",size=14)
 BDPAvgMg.1<-BDPAvgMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=2,y=Yposition,label="D",size=14)
 BDPAvgMn.1<-BDPAvgMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 BDPAvgNa.1<-BDPAvgNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.3,y=Yposition,label="F",size=14)
 BDPAvgSO42.1<-BDPAvgSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=6,y=Yposition,label="G",size=14)
-BDPAvgDOC.1<-BDPAvgDOC+annotate("text",x=0,y=Yposition,label="G",size=14)
+BDPAvgDOC.1<-BDPAvgDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="G",size=14)
 grid.arrange(arrangeGrob(BDPAvgFe.1,BDPAvgMn.1,BDPAvgCA.1,BDPAvgMg.1,BDPAvgK.1,BDPAvgNa.1,BDPAvgSO42.1,BDPAvgDOC.1, ncol=2, widths=c(1,1)))
 
 #Put all ion plots in one figure
@@ -1478,8 +1487,8 @@ dev.off()
 #Put pH and EC plots in one figure
 library(gridExtra)
 Yposition<-5
-BDPAvgpH.1<-BDPAvgpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=3,y=Yposition,label="A",size=14)
-BDPAvgEC.1<-BDPAvgEC+annotate("text",x=700,y=Yposition,label="B",size=14)
+BDPAvgpH.1<-BDPAvgpH+annotate("text",x=3,y=Yposition,label="A",size=14)
+BDPAvgEC.1<-BDPAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=700,y=Yposition,label="B",size=14)
 grid.arrange(arrangeGrob(BDPAvgpH.1,BDPAvgEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -1508,6 +1517,7 @@ SBAvgpH<-ggplot(SBPHEC, aes(pHmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\npH")+
   ylab("Depth (cm)\n")+
+  theme(legend.position = "top")+
   scale_y_reverse()
 #Call the graph
 SBAvgpH
@@ -1580,6 +1590,7 @@ SBAvgFe<-ggplot(SBAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=as
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nFe (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
+  theme(legend.position = "top")+
   scale_y_reverse()
 #Call the graph
 SBAvgFe
@@ -1680,12 +1691,12 @@ SBAvgDOC
 library(gridExtra)
 Yposition<-20
 SBAvgCA.1<-SBAvgCA+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.5,y=Yposition,label="C",size=14)
-SBAvgFe.1<-SBAvgFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="A",size=14)
+SBAvgFe.1<-SBAvgFe+annotate("text",x=0,y=Yposition,label="A",size=14)
 SBAvgK.1<-SBAvgK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="E",size=14)
 SBAvgMg.1<-SBAvgMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.5,y=Yposition,label="D",size=14)
 SBAvgMn.1<-SBAvgMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 SBAvgNa.1<-SBAvgNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="F",size=14)
-SBAvgSO42.1<-SBAvgSO42+annotate("text",x=1.5,y=Yposition,label="G",size=14)
+SBAvgSO42.1<-SBAvgSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=1.5,y=Yposition,label="G",size=14)
 SBAvgDOC.1<-SBAvgDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.12,y=Yposition,label="H",size=14)
 grid.arrange(arrangeGrob(SBAvgFe.1,SBAvgMn.1,SBAvgCA.1,SBAvgMg.1,SBAvgK.1,SBAvgNa.1,SBAvgSO42.1,SBAvgDOC.1, ncol=2, widths=c(1,1)))
 
@@ -1697,8 +1708,8 @@ dev.off()
 #Put pH and EC plots in one figure
 library(gridExtra)
 Yposition<-20
-SBAvgpH.1<-SBAvgpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=3,y=Yposition,label="A",size=14)
-SBAvgEC.1<-SBAvgEC+annotate("text",x=300,y=Yposition,label="B",size=14)
+SBAvgpH.1<-SBAvgpH+annotate("text",x=3,y=Yposition,label="A",size=14)
+SBAvgEC.1<-SBAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=300,y=Yposition,label="B",size=14)
 grid.arrange(arrangeGrob(SBAvgpH.1,SBAvgEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
