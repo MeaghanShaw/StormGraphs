@@ -86,15 +86,19 @@ longbaseCQ<-melt(CQforbasemelt,id.vars=c("logQ"),variable.name="ion",value.name=
 #Add in lines and why is the legend not working?
 library(ggplot2)
 pal<-c("#eff3ff","#bdd7e7","#6baed6","#2171b5")
-CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=ion))+
-  geom_point(colour="black",size=4,pch=21)+
+shape1<-c(21,22,23,24)
+CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=as.factor(ion),shape=as.factor(ion)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
   geom_smooth(method=lm,colour="black",se=FALSE)+
   theme_bw()+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  scale_fill_manual(name="Ion",breaks=c("logCa","logK","logMg","logNa"),labels=c("Ca","K","Mg","Na"),values=pal)+
-  xlab("\nLog(Q, "~m^3~" "~s^-1~")")
-  ylab("Log(Concentration, mmol "~L^-1~")")+
-  theme(legend.position="bottom")
+  theme(legend.position="bottom")+
+  theme(legend.title=element_blank())+
+  guides(fill=guide_legend(title=NULL))+
+  xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
+  ylab("Log(Concentration, mmol "~L^-1~")")
 
 #Call the graph
 CQbasecat
@@ -110,15 +114,20 @@ longamdCQ<-melt(CQforamdmelt,id.vars=c("logQ"),variable.name="ion",value.name="c
 #Add in lines and why is the legend not working?
 library(ggplot2)
 pal<-c("#feedde","#fdbe85","#fd8d3c","#d94701")
-CQAMD<-ggplot(longamdCQ, aes(x=logQ,y=concentration,fill=ion))+
-  geom_point(colour="black",size=4,pch=21)+
+shape1<-c(21,22,23,24)
+CQAMD<-ggplot(longamdCQ, aes(x=logQ,y=concentration,fill=as.factor(ion), shape=as.factor(ion)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
   geom_smooth(method=lm,colour="black",se=FALSE)+
   theme_bw()+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  scale_fill_manual(name="Ion",breaks=c("logFe","logAl","logMn","logSO42"),labels=c("Fe","Al","Mn","S"~O[4]^2-""),values=pal)+
-  xlab("\nLog(Q, "~m^3~" "~s^-1~")")
-  ylab("Log(Concentration, mmol "~L^-1~")")+
-  theme(legend.position="bottom")
+  theme(legend.position="bottom")+
+  theme(legend.title=element_blank())+
+  guides(fill=guide_legend(title=NULL))+
+  xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
+  ylab("Log(Concentration, mmol "~L^-1~")")
+  
 
 #Call the graph
 CQAMD
