@@ -103,12 +103,13 @@ CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=as.factor(ion),sha
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   theme(legend.position="bottom")+
   theme(legend.title=element_blank())+
-  guides(fill=guide_legend(title=NULL))+
+  guides(fill=guide_legend(title="ion"),shape=guide_legend(title="ion"))+
   xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
   ylab("Log(Concentration, mmol "~L^-1~")")
 
 #Call the graph
 CQbasecat
+
 Caregression<-lm(logCa~logQ,data=CQ)
 Caregression
 summary(Caregression)
@@ -146,7 +147,7 @@ CQAMD<-ggplot(longamdCQ, aes(x=logQ,y=concentration,fill=as.factor(ion), shape=a
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   theme(legend.position="bottom")+
   theme(legend.title=element_blank())+
-  guides(fill=guide_legend(title=NULL))+
+  guides(fill=guide_legend(title="ion"),shape=guide_legend(title="ion"))+
   xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
   ylab("Log(Concentration, mmol "~L^-1~")")
   
