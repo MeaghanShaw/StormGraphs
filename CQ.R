@@ -50,6 +50,9 @@ CQH<-ggplot(CQ, aes(logQ,logH))+
   geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQH
+pHregression<-lm(logH~logQ,data=CQ)
+pHregression
+summary(pHregression)
 
 #save to pdf
 pdf("CQH.pdf",height=6,width=8)
@@ -70,6 +73,10 @@ CQEC<-ggplot(CQ, aes(logQ,logEC))+
   geom_smooth(method=lm,colour="black",se=FALSE)
 #Call the graph
 CQEC
+
+ECregression<-lm(logEC~logQ,data=CQ)
+ECregression
+summary(ECregression)
 
 #save to pdf
 pdf("CQEC.pdf",height=6,width=8)
@@ -102,6 +109,21 @@ CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=as.factor(ion),sha
 
 #Call the graph
 CQbasecat
+Caregression<-lm(logCa~logQ,data=CQ)
+Caregression
+summary(Caregression)
+
+Mgregression<-lm(logMg~logQ,data=CQ)
+Mgregression
+summary(Mgregression)
+
+Naregression<-lm(logNa~logQ,data=CQ)
+Naregression
+summary(Naregression)
+
+Kregression<-lm(logK~logQ,data=CQ)
+Kregression
+summary(Kregression)
 
 #Reshape the data for AMD CQ plot
 CQvarsforamdmelt<-c("logQ","logFe","logAl","logMn","logSO42")
@@ -131,6 +153,18 @@ CQAMD<-ggplot(longamdCQ, aes(x=logQ,y=concentration,fill=as.factor(ion), shape=a
 
 #Call the graph
 CQAMD
+
+Feregression<-lm(logFe~logQ,data=CQ)
+Feregression
+summary(Feregression)
+
+Mnregression<-lm(logMn~logQ,data=CQ)
+Mnregression
+summary(Mnregression)
+
+Alregression<-lm(logAl~logQ,data=CQ)
+Alregression
+summary(Alregression)
 
 #Put CQ plots in one figure
 library(gridExtra)
