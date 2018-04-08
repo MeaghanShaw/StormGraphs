@@ -36,6 +36,9 @@ CQ$logSO42<-(log10(CQ$SO42_mmolL))
 CQ$logH<-(log10(CQ$H_umolL))
 CQ$logEC<-(log10(CQ$EC))
 
+#write to csv
+write.csv(CQ,"CQdata.csv")
+
 #H+ plot
 library(ggplot2)
 pal="#c2a5cf"
@@ -166,6 +169,10 @@ summary(Mnregression)
 Alregression<-lm(logAl~logQ,data=CQ)
 Alregression
 summary(Alregression)
+
+SO42regression<-lm(logSO42~logQ,data=CQ)
+SO42regression
+summary(SO42regression)
 
 #Put CQ plots in one figure
 library(gridExtra)
