@@ -73,6 +73,7 @@ OutEC<-ggplot(Outchem, aes(newdate,EC))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
+  ylim(0,2200)+
   ylab("Specific Conductance ("~mu~"S "~cm^-1~")")
 #Call the graph
 OutEC
@@ -118,7 +119,8 @@ OutCa<-ggplot(Outchem, aes(newdate,Ca_mmolL))+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("Ca (mmol "~L^-1~")")
+  ylab("Ca (mmol "~L^-1~")")+
+  ylim(0,9)
 #Call the graph
 OutCa
 
@@ -148,7 +150,8 @@ OutK<-ggplot(Outchem, aes(newdate,K_mmolL))+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("K (mmol "~L^-1~")")
+  ylab("K (mmol "~L^-1~")")+
+  ylim(0,0.4)
 #Call the graph
 OutK
 
@@ -163,7 +166,8 @@ OutMg<-ggplot(Outchem, aes(newdate,Mg_mmolL))+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("Mg (mmol "~L^-1~")")
+  ylab("Mg (mmol "~L^-1~")")+
+  ylim(0,6)
 #Call the graph
 OutMg
 
@@ -194,7 +198,8 @@ OutNa<-ggplot(Outchem, aes(newdate,Na_mmolL))+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("Na (mmol "~L^-1~")")
+  ylab("Na (mmol "~L^-1~")")+
+  ylim(0,0.8)
 #Call the graph
 OutNa
 
@@ -209,7 +214,8 @@ OutSO42<-ggplot(Outchem, aes(newdate,SO42_mmolL))+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("S"~O[4]^-2~" (mmol "~L^-1~")")
+  ylab("S"~O[4]^-2~" (mmol "~L^-1~")")+
+  ylim(0,16)
 #Call the graph
 OutSO42
 
@@ -234,10 +240,10 @@ startdate<-"2017-03-27"
 xposition<-date(startdate)
 OutCa.1<-OutCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=8,label="E",size=14)
 OutFe.1<-OutFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.28,label="A",size=14)
-OutK.1<-OutK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.3,label="G",size=14)
+OutK.1<-OutK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.35,label="G",size=14)
 OutMg.1<-OutMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=5.5,label="F",size=14)
 OutMn.1<-OutMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.6,label="B",size=14)
-OutNa.1<-OutNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.62,label="H",size=14)
+OutNa.1<-OutNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.7,label="H",size=14)
 OutAl.1<-OutAl+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.19,label="C",size=14)
 OutSO42.1<-OutSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=15,label="D",size=12.5)
 grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1,OutCa.1,OutMg.1,OutK.1,OutNa.1, ncol=2, widths=c(1,1)))

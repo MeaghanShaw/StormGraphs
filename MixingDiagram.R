@@ -72,6 +72,10 @@ basecatmix$Mn_Na<-(basecatmix$Mn_mmolL/basecatmix$Na_mmolL)
 basecatmix$logFeNa<-(log10(basecatmix$Fe_Na))
 basecatmix$logMnNa<-(log10(basecatmix$Mn_Na))
 
+
+#export to csv file
+write.csv(basecatmix,"Mixingdata.csv")
+
 #Plots Fe and Mn mixing diagram
 library(ggplot2)
 pal<-c("#ca0020","#fe9929","#969696","#225ea8")
@@ -123,6 +127,9 @@ CaMgbydate
 pdf("CaMgbydate.pdf",height=8,width=8)
 CaMgbydate
 dev.off()
+
+#export to csv file
+write.csv(Mixbydate,"Mixingbydate.csv")
 
 #Plots Fe/Na by date
 library(ggplot2)
