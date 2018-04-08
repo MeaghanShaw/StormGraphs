@@ -20,6 +20,9 @@ library(lubridate)
 Outchem$newdate<-mdy(Outchem$Date)
 Outchem$doy<-yday(Outchem$newdate)
 
+#write to csv
+write.csv(Outchem,"OutletChemData.csv")
+
 #pH and EC std dev and std err
 library(plyr)
 outlet.summary<-ddply(Outchem, c("Site"), summarise,
@@ -70,7 +73,7 @@ OutEC<-ggplot(Outchem, aes(newdate,EC))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("Specific Conductance\n")
+  ylab("Specific Conductance ("~mu~"S "~cm^-1~")")
 #Call the graph
 OutEC
 
@@ -229,19 +232,19 @@ library(gridExtra)
 library(lubridate)
 startdate<-"2017-03-27"
 xposition<-date(startdate)
-OutCa.1<-OutCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.25,label="C",size=14)
-OutFe.1<-OutFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=2,label="A",size=14)
-OutK.1<-OutK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.6,label="E",size=14)
-OutMg.1<-OutMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4,label="D",size=14)
-OutMn.1<-OutMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="B",size=14)
-OutNa.1<-OutNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="F",size=14)
-OutAl.1<-OutAl+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="F",size=14)
-OutSO42.1<-OutSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=14,label="G",size=12.5)
-grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutCa.1,OutMg.1,OutK.1,OutNa.1,OutAl.1,OutSO42.1, ncol=2, widths=c(1,1)))
+OutCa.1<-OutCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=8,label="E",size=14)
+OutFe.1<-OutFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.28,label="A",size=14)
+OutK.1<-OutK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.3,label="G",size=14)
+OutMg.1<-OutMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=5.5,label="F",size=14)
+OutMn.1<-OutMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.6,label="B",size=14)
+OutNa.1<-OutNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.62,label="H",size=14)
+OutAl.1<-OutAl+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.19,label="C",size=14)
+OutSO42.1<-OutSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=15,label="D",size=12.5)
+grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1,OutCa.1,OutMg.1,OutK.1,OutNa.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
 pdf("Outionbydate.pdf",height=20,width=20)
-grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutCa.1,OutMg.1,OutK.1,OutNa.1,OutAl.1,OutSO42.1, ncol=2, widths=c(1,1)))
+grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1,OutCa.1,OutMg.1,OutK.1,OutNa.1, ncol=2, widths=c(1,1)))
 dev.off()
 
 # Plot outlet pH and Fe by date

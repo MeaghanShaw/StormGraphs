@@ -67,6 +67,181 @@ DOC.site.summary<-ddply(piezoDOC, c("sample_name","Depth_cm","Site"), summarise,
                             DOCmean = mean(DOC_mmolL, na.rm=TRUE), DOCsd = sd(DOC_mmolL,na.r=TRUE),
                             DOCsem = sd(DOC_mmolL,na.rm=TRUE)/sqrt(length(DOC_mmolL)))
 
+#Access BDP and DP subset of pH and EC data and make file
+BDPDPpHEC<-pHandEC.site.summary[which(pHandEC.site.summary$Site == "below dam pool"
+                       | pHandEC.site.summary$Site == "dam pool" ),]
+
+#sort pH by depth
+BDPDPpHEC<-BDPDPpHEC[order(BDPDPpHEC$Site, BDPDPpHEC$Depth_cm),]
+
+#Plots pH averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDpH<-ggplot(BDPDPpHEC, aes(pHmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPpHEC,aes(y=Depth_cm,x=pHmean,xmin=pHmean-pHsem,xmax=pHmean+pHsem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\npH")+
+  xlim(0,7)+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDpH
+
+#Plots pH averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDEC<-ggplot(BDPDPpHEC, aes(ECmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPpHEC,aes(y=Depth_cm,x=ECmean,xmin=ECmean-ECsem,xmax=ECmean+ECsem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nSpecific conductance ("~mu~S~cm^-1~")")+
+  xlim(0,2000)+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDEC
+
+#Access BDP and DP subset of ion data and make file
+BDPDPAMD<-piezocat.site.summary[which(piezocat.site.summary$Site == "below dam pool"
+                                      | piezocat.site.summary$Site == "dam pool" ),]
+BDPDPan<-piezoan.site.summary[which(piezoan.site.summary$Site == "below dam pool"| piezoan.site.summary$Site == "dam pool"),]
+
+#sort pH by depth
+BDPDPAMD<-BDPDPAMD[order(BDPDPAMD$Site, BDPDPAMD$Depth_cm),]
+BDPDPan<-BDPDPan[order(BDPDPan$Site, BDPDPan$Depth_cm),]
+
+#Plots Fe averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDFe<-ggplot(BDPDPAMD, aes(Femean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Femean,xmin=Femean-Fesem,xmax=Femean+Fesem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nFe (mmol "~L^-1~")")+
+  xlim(0,3)+
+  ylab("Depth (cm)\n")+
+  theme(legend.position = "bottom")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDFe
+
+#Plots Mn averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDMn<-ggplot(BDPDPAMD, aes(Mnmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nMn (mmol "~L^-1~")")+
+  xlim(0,1)+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDMn
+
+#Plots Mg averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDMg<-ggplot(BDPDPAMD, aes(Mgmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Mgmean,xmin=Mgmean-Mgsem,xmax=Mgmean+Mgsem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nMg (mmol"~L^-1~")")+
+  xlim(0,6)+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDMg
+
+#Plots Ca averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDCa<-ggplot(BDPDPAMD, aes(Camean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Camean,xmin=Camean-Casem,xmax=Camean+Casem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nCa (mmol"~L^-1~")")+
+  xlim(0,8)+
+  ylab("Depth (cm)\n")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDCa
+
+#Plots SO42 averages for DP and BDP sites
+library(ggplot2)
+pal<-c("#e6550d","#fdae6b")
+shape1<-c(21, 22)
+AvgAMDSO42<-ggplot(BDPDPan, aes(SO42mean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
+  geom_path()+
+  geom_errorbarh(data=BDPDPan,aes(y=Depth_cm,x=SO42mean,xmin=SO42mean-SO42sem,xmax=SO42mean+SO42sem),height=2.5)+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  theme_bw(base_size=20)+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
+  xlab("\nS"~O[4]^-2~" (mmol "~L^-1~")")+
+  xlim(0,16)+
+  ylab("Depth (cm)\n")+
+  theme(legend.position = "bottom")+
+  scale_y_reverse()
+#Call the graph
+AvgAMDSO42
+
+#Put BDP and DP pH, SC, Ca, Mg, SO42, Fe, and Mn plots in one figure
+library(gridExtra)
+yposition<-5
+AvgAMDFe.1<-AvgAMDFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.05,y=yposition,label="E",size=14)
+AvgAMDMn.1<-AvgAMDMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.05,y=yposition,label="F",size=14)
+AvgAMDMg.1<-AvgAMDMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.25,y=yposition,label="D",size=14)
+AvgAMDCa.1<-AvgAMDCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.25,y=yposition,label="C",size=14)
+AvgAMDpH.1<-AvgAMDpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.25,y=yposition,label="A",size=14)
+AvgAMDEC.1<-AvgAMDEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=50,y=yposition,label="B",size=14)
+AvgAMDSO42.1<-AvgAMDSO42+annotate("text",x=0.5,y=yposition,label="G",size=14)
+grid.arrange(arrangeGrob(AvgAMDpH.1,AvgAMDEC.1,AvgAMDCa.1,AvgAMDMg.1,AvgAMDFe.1,AvgAMDMn.1,AvgAMDSO42.1, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("BDPDPAMD.pdf",height=20,width=15)
+grid.arrange(arrangeGrob(AvgAMDpH.1,AvgAMDEC.1,AvgAMDCa.1,AvgAMDMg.1,AvgAMDFe.1,AvgAMDMn.1,AvgAMDSO42.1, ncol=2, widths=c(1,1)))
+dev.off()
+
 #Access BDP subset of pH and EC data and make BDP file
 BDPpHEC<-pHandEC[which(pHandEC$sample_name == "BDP"
                        | pHandEC$sample_name == "P1" 
@@ -361,6 +536,7 @@ DPEC<-ggplot(DPpHEC, aes(newdate,EC,fill=as.factor(Depth_cm),shape=as.factor(Dep
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  ylim(0,2000)+
   xlab("\nDate")+
   ylab("Specific conductance ("~mu~"S c"~m^-1~")")+
   theme(legend.position ="bottom")
@@ -527,7 +703,7 @@ DPpiezoSO42<-ggplot(DPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),s
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
-  ylab("SO42- (mmol "~L^-1~")")
+  ylab("S"~O[4]^-2~" (mmol "~L^-1~")")
 #Call the graph
 DPpiezoSO42
 
@@ -739,7 +915,7 @@ SBMn<-ggplot(SBpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
-  ylim(0,0.9)+
+  ylim(0,1)+
   xlab("\nDate")+
   ylab("Mn (mmol "~L^-1~")")
 #Call the graph
@@ -758,6 +934,7 @@ SBNa<-ggplot(SBpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
+  ylim(0,1)+
   ylab("Na (mmol "~L^-1~")")
 #Call the graph
 SBNa
@@ -776,7 +953,7 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   ylim(0,20)+
   xlab("\nDate")+
-  ylab("SO42- (mmol "~L^-1~")")+
+  ylab("S"~O[4]^-2~" (mmol "~L^-1~")")+
   theme(legend.position = "bottom")
 #Call the graph
 SBSO42
@@ -804,15 +981,13 @@ library(gridExtra)
 library(lubridate)
 startdate<-"2017-03-27"
 xposition<-date(startdate)
-startdate.1<-"2017-11-20"
-xposition.1<-date(startdate.1)
 SBCa.1<-SBCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=6.4,label="C",size=14)
 SBFe.1<-SBFe+annotate("text",x=xposition,y=6.8,label="A",size=14)
 SBK.1<-SBK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.65,label="E",size=14)
 SBMg.1<-SBMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4,label="D",size=14)
-SBMn.1<-SBMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.85,label="B",size=14)
-SBNa.1<-SBNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition.1,y=0.8,label="F",size=14)
-SBSO42.1<-SBSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=14,label="G",size=12.5)
+SBMn.1<-SBMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.9,label="B",size=14)
+SBNa.1<-SBNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.9,label="F",size=14)
+SBSO42.1<-SBSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=17,label="G",size=12.5)
 SBDOC.1<-SBDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=4.5,label="H",size=12.5)
 grid.arrange(arrangeGrob(SBFe.1,SBMn.1,SBCa.1,SBMg.1,SBK.1,SBNa.1,SBSO42.1,SBDOC.1, ncol=2, widths=c(1,1)))
 
@@ -870,6 +1045,7 @@ AvgEC<-ggplot(avgpHEC, aes(ECmean,Depth_cm,fill=as.factor(Site),shape=as.factor(
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nSpecific Conductance ("~mu~"S"~cm^-1~")")+
+  xlim(0,2000)+
   ylab("Depth (cm)\n")+
   scale_y_reverse()
 #Call the graph
@@ -1086,6 +1262,7 @@ DPAvgEC<-ggplot(DPPHEC, aes(ECmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nSpecific conductance ("~mu~"S c"~m^-1~")")+
+  xlim(0,2000)+
   ylab("Depth (cm)\n")+
   theme(legend.position = "bottom")+
   scale_y_reverse()
@@ -1264,8 +1441,8 @@ dev.off()
 #Put DP pH and EC plots in one figure
 library(gridExtra)
 Yposition<-5
-DPAvgpH.1<-DPAvgpH+annotate("text",x=3,y=Yposition,label="A",size=14)
-DPAvgEC.1<-DPAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=400,y=Yposition,label="B",size=14)
+DPAvgpH.1<-DPAvgpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=3,y=Yposition,label="A",size=14)
+DPAvgEC.1<-DPAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 grid.arrange(arrangeGrob(DPAvgpH.1,DPAvgEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -1311,6 +1488,7 @@ BDPAvgEC<-ggplot(BDPPHEC, aes(ECmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
+  xlim(0,2000)+
   xlab("\nSpecific conductance ("~mu~"S c"~m^-1~")")+
   ylab("Depth (cm)\n")+
   scale_y_reverse()+
@@ -1487,8 +1665,8 @@ dev.off()
 #Put pH and EC plots in one figure
 library(gridExtra)
 Yposition<-5
-BDPAvgpH.1<-BDPAvgpH+annotate("text",x=3,y=Yposition,label="A",size=14)
-BDPAvgEC.1<-BDPAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=700,y=Yposition,label="B",size=14)
+BDPAvgpH.1<-BDPAvgpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=3,y=Yposition,label="A",size=14)
+BDPAvgEC.1<-BDPAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 grid.arrange(arrangeGrob(BDPAvgpH.1,BDPAvgEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -1518,7 +1696,7 @@ SBAvgpH<-ggplot(SBPHEC, aes(pHmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   xlab("\npH")+
   ylab("Depth (cm)\n")+
   theme(legend.position = "top")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgpH
 
@@ -1535,8 +1713,9 @@ SBAvgEC<-ggplot(SBPHEC, aes(ECmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nSpecific conductance ("~mu~"S c"~m^-1~")")+
+  xlim(0,2000)+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgEC
 
@@ -1554,7 +1733,7 @@ SBAvgSO42<-ggplot(SBAVGANCHEM, aes(SO42mean,Depth_cm,fill=as.factor(Depth_cm),sh
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nS"~O[4]^-2~" (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgSO42
 
@@ -1572,7 +1751,7 @@ SBAvgCA<-ggplot(SBAVGCHEM, aes(Camean,Depth_cm,fill=as.factor(Depth_cm),shape=as
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nCa (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgCA
 
@@ -1591,7 +1770,7 @@ SBAvgFe<-ggplot(SBAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=as
   xlab("\nFe (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
   theme(legend.position = "top")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgFe
 
@@ -1609,7 +1788,7 @@ SBAvgK<-ggplot(SBAVGCHEM, aes(Kmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.f
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nK (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgK
 
@@ -1627,7 +1806,7 @@ SBAvgMg<-ggplot(SBAVGCHEM, aes(Mgmean,Depth_cm,fill=as.factor(Depth_cm),shape=as
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nMg (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgMg
 
@@ -1638,15 +1817,14 @@ shape1<-c(22, 23, 24, 25)
 SBAvgMn<-ggplot(SBAVGCHEM, aes(Mnmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
   geom_point(colour="black",size=4)+
-  geom_smooth(SBAVGCHEM,aes(Mnmean,Depth_cm),fill="black")+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
-  xlab("\nMn (mmol"~L^-1~")")+
+  xlab("\nMg (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgMn
 
@@ -1664,7 +1842,7 @@ SBAvgNa<-ggplot(SBAVGCHEM, aes(Namean,Depth_cm,fill=as.factor(Depth_cm),shape=as
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nNa (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgNa
 
@@ -1683,13 +1861,13 @@ SBAvgDOC<-ggplot(SBDOC, aes(DOCmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.f
   xlab("\nDOC (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
   theme(legend.position = "bottom")+
-  scale_y_reverse()
+  ylim(100,0)
 #Call the graph
 SBAvgDOC
 
 #Put all avg plots in one figure
 library(gridExtra)
-Yposition<-20
+Yposition<-5
 SBAvgCA.1<-SBAvgCA+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.5,y=Yposition,label="C",size=14)
 SBAvgFe.1<-SBAvgFe+annotate("text",x=0,y=Yposition,label="A",size=14)
 SBAvgK.1<-SBAvgK+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="E",size=14)
@@ -1707,9 +1885,9 @@ dev.off()
 
 #Put pH and EC plots in one figure
 library(gridExtra)
-Yposition<-20
-SBAvgpH.1<-SBAvgpH+annotate("text",x=3,y=Yposition,label="A",size=14)
-SBAvgEC.1<-SBAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=300,y=Yposition,label="B",size=14)
+Yposition<-5
+SBAvgpH.1<-SBAvgpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=3,y=Yposition,label="A",size=14)
+SBAvgEC.1<-SBAvgEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 grid.arrange(arrangeGrob(SBAvgpH.1,SBAvgEC.1, ncol=1, widths=c(1)))
 
 #Save to PDF
@@ -1744,3 +1922,9 @@ dev.off()
 allpiezoion<-merge(piezocat,piezoan)
 #export csv file
 write.csv(allpiezoion,"PiezometerCationandAnion.csv")
+
+#Merge average ion, pH, and EC data
+avgallpiezoion<-merge(piezocat.site.summary,piezoan.site.summary)
+avgallpiezo<-merge(avgallpiezoion,pHandEC.site.summary)
+#export to csv file
+write.csv(avgallpiezo,"PiezoAvgData.csv")
