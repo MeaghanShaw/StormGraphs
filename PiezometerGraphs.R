@@ -81,10 +81,12 @@ shape1<-c(21, 22)
 AvgAMDpH<-ggplot(BDPDPpHEC, aes(pHmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPpHEC,aes(y=Depth_cm,x=pHmean,xmin=pHmean-pHsem,xmax=pHmean+pHsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\npH")+
@@ -94,17 +96,19 @@ AvgAMDpH<-ggplot(BDPDPpHEC, aes(pHmean,Depth_cm,fill=as.factor(Site),shape=as.fa
 #Call the graph
 AvgAMDpH
 
-#Plots pH averages for DP and BDP sites
+#Plots EC averages for DP and BDP sites
 library(ggplot2)
 pal<-c("#e6550d","#fdae6b")
 shape1<-c(21, 22)
 AvgAMDEC<-ggplot(BDPDPpHEC, aes(ECmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPpHEC,aes(y=Depth_cm,x=ECmean,xmin=ECmean-ECsem,xmax=ECmean+ECsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nSpecific conductance ("~mu~S~cm^-1~")")+
@@ -130,10 +134,12 @@ shape1<-c(21, 22)
 AvgAMDFe<-ggplot(BDPDPAMD, aes(Femean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Femean,xmin=Femean-Fesem,xmax=Femean+Fesem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nFe (mmol "~L^-1~")")+
@@ -151,10 +157,12 @@ shape1<-c(21, 22)
 AvgAMDMn<-ggplot(BDPDPAMD, aes(Mnmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nMn (mmol "~L^-1~")")+
@@ -171,10 +179,12 @@ shape1<-c(21, 22)
 AvgAMDMg<-ggplot(BDPDPAMD, aes(Mgmean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Mgmean,xmin=Mgmean-Mgsem,xmax=Mgmean+Mgsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nMg (mmol"~L^-1~")")+
@@ -191,10 +201,12 @@ shape1<-c(21, 22)
 AvgAMDCa<-ggplot(BDPDPAMD, aes(Camean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPAMD,aes(y=Depth_cm,x=Camean,xmin=Camean-Casem,xmax=Camean+Casem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nCa (mmol"~L^-1~")")+
@@ -211,10 +223,12 @@ shape1<-c(21, 22)
 AvgAMDSO42<-ggplot(BDPDPan, aes(SO42mean,Depth_cm,fill=as.factor(Site),shape=as.factor(Site)))+
   geom_path()+
   geom_errorbarh(data=BDPDPan,aes(y=Depth_cm,x=SO42mean,xmin=SO42mean-SO42sem,xmax=SO42mean+SO42sem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=8)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nS"~O[4]^-2~" (mmol "~L^-1~")")+
@@ -228,18 +242,18 @@ AvgAMDSO42
 #Put BDP and DP pH, SC, Ca, Mg, SO42, Fe, and Mn plots in one figure
 library(gridExtra)
 yposition<-5
-AvgAMDFe.1<-AvgAMDFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.05,y=yposition,label="E",size=14)
-AvgAMDMn.1<-AvgAMDMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.05,y=yposition,label="F",size=14)
+AvgAMDFe.1<-AvgAMDFe+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.05,y=yposition,label="E",size=10)
+AvgAMDMn.1<-AvgAMDMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.05,y=yposition,label="F",size=10)
 AvgAMDMg.1<-AvgAMDMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.25,y=yposition,label="D",size=14)
 AvgAMDCa.1<-AvgAMDCa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.25,y=yposition,label="C",size=14)
 AvgAMDpH.1<-AvgAMDpH+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.25,y=yposition,label="A",size=14)
 AvgAMDEC.1<-AvgAMDEC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=50,y=yposition,label="B",size=14)
-AvgAMDSO42.1<-AvgAMDSO42+annotate("text",x=0.5,y=yposition,label="G",size=14)
-grid.arrange(arrangeGrob(AvgAMDpH.1,AvgAMDEC.1,AvgAMDCa.1,AvgAMDMg.1,AvgAMDFe.1,AvgAMDMn.1,AvgAMDSO42.1, ncol=2, widths=c(1,1)))
+AvgAMDSO42.1<-AvgAMDSO42+annotate("text",x=0.5,y=yposition,label="G",size=10)
+grid.arrange(arrangeGrob(AvgAMDpH.1, AvgAMDEC.1, AvgAMDCa.1, AvgAMDMg.1, AvgAMDFe.1,AvgAMDMn.1,AvgAMDSO42.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
-pdf("BDPDPAMD.pdf",height=20,width=15)
-grid.arrange(arrangeGrob(AvgAMDpH.1,AvgAMDEC.1,AvgAMDCa.1,AvgAMDMg.1,AvgAMDFe.1,AvgAMDMn.1,AvgAMDSO42.1, ncol=2, widths=c(1,1)))
+pdf("BDPDPAVG.pdf",height=20,width=12)
+grid.arrange(arrangeGrob(AvgAMDpH.1, AvgAMDEC.1, AvgAMDCa.1, AvgAMDMg.1, AvgAMDFe.1,AvgAMDMn.1,AvgAMDSO42.1, ncol=2, widths=c(1,1)))
 dev.off()
 
 #Access BDP subset of pH and EC data and make BDP file
@@ -342,7 +356,9 @@ BDPpiezoCa<-ggplot(BDPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),sh
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -359,7 +375,9 @@ BDPpiezoFe<-ggplot(BDPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),sh
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -377,7 +395,9 @@ BDPpiezoK<-ggplot(BDPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shap
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -395,7 +415,9 @@ BDPpiezoMg<-ggplot(BDPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),sh
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -413,7 +435,9 @@ BDPpiezoMn<-ggplot(BDPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),sh
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -431,7 +455,9 @@ BDPpiezoNa<-ggplot(BDPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),sh
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -448,7 +474,9 @@ BDPpiezoSO42<-ggplot(BDPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm)
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -465,7 +493,9 @@ BDPpiezoDOC<-ggplot(BDPpiezoDOC, aes(newdate,DOC_mmolL,fill=as.factor(Depth_cm),
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -593,7 +623,9 @@ DPpiezoCa<-ggplot(DPpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shap
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -610,7 +642,9 @@ DPpiezoFe<-ggplot(DPpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shap
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -628,7 +662,9 @@ DPpiezoK<-ggplot(DPpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -645,7 +681,9 @@ DPpiezoMg<-ggplot(DPpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shap
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -663,7 +701,9 @@ DPpiezoMn<-ggplot(DPpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shap
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -680,7 +720,9 @@ DPpiezoNa<-ggplot(DPpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shap
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -698,7 +740,9 @@ DPpiezoSO42<-ggplot(DPpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),s
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -715,7 +759,9 @@ DPpiezoDOC<-ggplot(DPpiezoDOC, aes(newdate,DOC_mmolL,fill=as.factor(Depth_cm),sh
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -839,7 +885,9 @@ SBCa<-ggplot(SBpiezocat, aes(newdate,Ca_mmolL,fill=as.factor(Depth_cm),shape=as.
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -858,7 +906,9 @@ SBFe<-ggplot(SBpiezocat, aes(newdate,Fe_mmolL,fill=as.factor(Depth_cm),shape=as.
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -877,7 +927,9 @@ SBK<-ggplot(SBpiezocat, aes(newdate,K_mmolL,fill=as.factor(Depth_cm),shape=as.fa
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -894,7 +946,9 @@ SBMg<-ggplot(SBpiezocat, aes(newdate,Mg_mmolL,fill=as.factor(Depth_cm),shape=as.
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -911,7 +965,9 @@ SBMn<-ggplot(SBpiezocat, aes(newdate,Mn_mmolL,fill=as.factor(Depth_cm),shape=as.
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -929,7 +985,9 @@ SBNa<-ggplot(SBpiezocat, aes(newdate,Na_mmolL,fill=as.factor(Depth_cm),shape=as.
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -947,7 +1005,9 @@ SBSO42<-ggplot(SBpiezoan, aes(newdate,SO42_mmolL,fill=as.factor(Depth_cm),shape=
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -966,7 +1026,9 @@ SBDOC<-ggplot(SBpiezoDOC, aes(newdate,DOC_mmolL,fill=as.factor(Depth_cm),shape=a
   geom_point(colour="black",size=4)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title="Depth (cm)"),shape=guide_legend(title="Depth (cm)"))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -1275,10 +1337,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgSO42<-ggplot(DPAVGANCHEM, aes(SO42mean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGANCHEM,aes(y=Depth_cm,x=SO42mean,xmin=SO42mean-SO42sem,xmax=SO42mean+SO42sem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlim(0,17)+
@@ -1294,10 +1358,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgCA<-ggplot(DPAVGCHEM, aes(Camean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGCHEM,aes(y=Depth_cm,x=Camean,xmin=Camean-Casem,xmax=Camean+Casem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nCa (mmol "~L^-1~")")+
@@ -1312,10 +1378,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgFe<-ggplot(DPAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGCHEM,aes(y=Depth_cm,x=Femean,xmin=Femean-Fesem,xmax=Femean+Fesem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlim(0,3)+
@@ -1332,10 +1400,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgK<-ggplot(DPAVGCHEM, aes(Kmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGCHEM,aes(y=Depth_cm,x=Kmean,xmin=Kmean-Ksem,xmax=Kmean+Ksem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlim(0,0.3)+
@@ -1351,11 +1421,13 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgMg<-ggplot(DPAVGCHEM, aes(Mgmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGCHEM,aes(y=Depth_cm,x=Mgmean,xmin=Mgmean-Mgsem,xmax=Mgmean+Mgsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   geom_line()+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nMg (mmol "~L^-1~")")+
@@ -1370,10 +1442,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgMn<-ggplot(DPAVGCHEM, aes(Mnmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGCHEM,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nMn (mmol "~L^-1~")")+
@@ -1388,10 +1462,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgNa<-ggplot(DPAVGCHEM, aes(Namean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPAVGCHEM,aes(y=Depth_cm,x=Namean,xmin=Namean-Nasem,xmax=Namean+Nasem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlim(0.3,0.6)+
@@ -1407,10 +1483,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 DPAvgDOC<-ggplot(DPDOC, aes(DOCmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=DPDOC,aes(y=Depth_cm,x=DOCmean,xmin=DOCmean-DOCsem,xmax=DOCmean+DOCsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nDOC (mmol "~L^-1~")")+
@@ -1502,10 +1580,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgSO42<-ggplot(BDPAVGANCHEM, aes(SO42mean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGANCHEM,aes(y=Depth_cm,x=SO42mean,xmin=SO42mean-SO42sem,xmax=SO42mean+SO42sem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nS"~O[4]^-2~" (mmol "~L^-1~")")+
@@ -1520,10 +1600,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgCA<-ggplot(BDPAVGCHEM, aes(Camean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGCHEM,aes(y=Depth_cm,x=Camean,xmin=Camean-Casem,xmax=Camean+Casem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nCa (mmol"~L^-1~")")+
@@ -1538,10 +1620,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgFe<-ggplot(BDPAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGCHEM,aes(y=Depth_cm,x=Femean,xmin=Femean-Fesem,xmax=Femean+Fesem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nFe (mmol"~L^-1~")")+
@@ -1557,10 +1641,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgK<-ggplot(BDPAVGCHEM, aes(Kmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGCHEM,aes(y=Depth_cm,x=Kmean,xmin=Kmean-Ksem,xmax=Kmean+Ksem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nK (mmol"~L^-1~")")+
@@ -1575,10 +1661,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgMg<-ggplot(BDPAVGCHEM, aes(Mgmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGCHEM,aes(y=Depth_cm,x=Mgmean,xmin=Mgmean-Mgsem,xmax=Mgmean+Mgsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlim(2,6)+
@@ -1594,10 +1682,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgMn<-ggplot(BDPAVGCHEM, aes(Mnmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGCHEM,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nMn (mmol"~L^-1~")")+
@@ -1612,10 +1702,12 @@ pal<-c("#ffffb2","#fecc5c","#fd8d3c","#f03b20","#bd0026")
 shape1<-c(21, 22, 23, 24, 25)
 BDPAvgNa<-ggplot(BDPAVGCHEM, aes(Namean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPAVGCHEM,aes(y=Depth_cm,x=Namean,xmin=Namean-Nasem,xmax=Namean+Nasem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlim(0.3,0.6)+
@@ -1631,10 +1723,12 @@ pal<-c("#ffffd4","#fed98e","#fe9929","#d95f0e","#993404")
 shape1<-c(21, 22, 23, 24,25)
 BDPAvgDOC<-ggplot(BDPDOC, aes(DOCmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=BDPDOC,aes(y=Depth_cm,x=DOCmean,xmin=DOCmean-DOCsem,xmax=DOCmean+DOCsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nDOC (mmol "~L^-1~")")+
@@ -1654,7 +1748,7 @@ BDPAvgMg.1<-BDPAvgMg+guides(fill=FALSE,shape=FALSE)+annotate("text",x=2,y=Yposit
 BDPAvgMn.1<-BDPAvgMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="B",size=14)
 BDPAvgNa.1<-BDPAvgNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0.3,y=Yposition,label="F",size=14)
 BDPAvgSO42.1<-BDPAvgSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=6,y=Yposition,label="G",size=14)
-BDPAvgDOC.1<-BDPAvgDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="G",size=14)
+BDPAvgDOC.1<-BDPAvgDOC+guides(fill=FALSE,shape=FALSE)+annotate("text",x=0,y=Yposition,label="H",size=14)
 grid.arrange(arrangeGrob(BDPAvgFe.1,BDPAvgMn.1,BDPAvgCA.1,BDPAvgMg.1,BDPAvgK.1,BDPAvgNa.1,BDPAvgSO42.1,BDPAvgDOC.1, ncol=2, widths=c(1,1)))
 
 #Put all ion plots in one figure
@@ -1696,7 +1790,7 @@ SBAvgpH<-ggplot(SBPHEC, aes(pHmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   xlab("\npH")+
   ylab("Depth (cm)\n")+
   theme(legend.position = "top")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgpH
 
@@ -1715,7 +1809,7 @@ SBAvgEC<-ggplot(SBPHEC, aes(ECmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.fa
   xlab("\nSpecific conductance ("~mu~"S c"~m^-1~")")+
   xlim(0,2000)+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgEC
 
@@ -1725,15 +1819,17 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgSO42<-ggplot(SBAVGANCHEM, aes(SO42mean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGANCHEM,aes(y=Depth_cm,x=SO42mean,xmin=SO42mean-SO42sem,xmax=SO42mean+SO42sem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nS"~O[4]^-2~" (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgSO42
 
@@ -1743,15 +1839,17 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgCA<-ggplot(SBAVGCHEM, aes(Camean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Camean,xmin=Camean-Casem,xmax=Camean+Casem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nCa (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgCA
 
@@ -1761,16 +1859,18 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgFe<-ggplot(SBAVGCHEM, aes(Femean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Femean,xmin=Femean-Fesem,xmax=Femean+Fesem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nFe (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
   theme(legend.position = "top")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgFe
 
@@ -1780,15 +1880,17 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgK<-ggplot(SBAVGCHEM, aes(Kmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Kmean,xmin=Kmean-Ksem,xmax=Kmean+Ksem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nK (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgK
 
@@ -1798,15 +1900,17 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgMg<-ggplot(SBAVGCHEM, aes(Mgmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Mgmean,xmin=Mgmean-Mgsem,xmax=Mgmean+Mgsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nMg (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgMg
 
@@ -1816,15 +1920,17 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgMn<-ggplot(SBAVGCHEM, aes(Mnmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Mnmean,xmin=Mnmean-Mnsem,xmax=Mnmean+Mnsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nMg (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgMn
 
@@ -1834,15 +1940,17 @@ pal<-c("#ffffcc","#c2e699","#78c679","#238443")
 shape1<-c(22, 23, 24, 25)
 SBAvgNa<-ggplot(SBAVGCHEM, aes(Namean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBAVGCHEM,aes(y=Depth_cm,x=Namean,xmin=Namean-Nasem,xmax=Namean+Nasem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nNa (mmol"~L^-1~")")+
   ylab("Depth (cm)\n")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgNa
 
@@ -1852,16 +1960,18 @@ pal<-c("#ffffcc","#78c679","#238443")
 shape1<-c(22, 24, 25)
 SBAvgDOC<-ggplot(SBDOC, aes(DOCmean,Depth_cm,fill=as.factor(Depth_cm),shape=as.factor(Depth_cm)))+
   geom_errorbarh(data=SBDOC,aes(y=Depth_cm,x=DOCmean,xmin=DOCmean-DOCsem,xmax=DOCmean+DOCsem),height=2.5)+
-  geom_point(colour="black",size=4)+
+  geom_point(colour="black",size=6)+
   scale_shape_manual(values=shape1)+    
   scale_fill_manual(values=pal)+
-  theme_bw(base_size=20)+
+  theme_bw(base_size=25)+
+  theme(text = element_text(size=25))+
+  theme(axis.text=element_text(size=25))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL),shape=guide_legend(title=NULL))+
   xlab("\nDOC (mmol "~L^-1~")")+
   ylab("Depth (cm)\n")+
   theme(legend.position = "bottom")+
-  ylim(100,0)
+  ylim(100,15)
 #Call the graph
 SBAvgDOC
 
@@ -1897,7 +2007,11 @@ dev.off()
 
 #Merge BDP pH/EC and BDP cation data
 BDPchem<-merge(BDPcat,BDPpHEC)
-# Plot BDP pH and Fe by date
+
+#export csv file
+write.csv(BDPchem,"BDPchem.csv")
+
+2# Plot BDP pH and Fe by date
 library(ggplot2)
 yscale<-0.5
 
@@ -1920,8 +2034,11 @@ dev.off()
 
 #Merge all piezometer data
 allpiezoion<-merge(piezocat,piezoan)
+allpiezo<-allpiezoion[order(allpiezoion$sample_name,allpiezoion$date),]
+allpiezo<-merge(allpiezoion,piezoDOC)
+allpiezo<-allpiezo[order(allpiezo$sample_name,allpiezo$date),]
 #export csv file
-write.csv(allpiezoion,"PiezometerCationandAnion.csv")
+write.csv(allpiezo,"PiezometerCationandAnion.csv")
 
 #Merge average ion, pH, and EC data
 avgallpiezoion<-merge(piezocat.site.summary,piezoan.site.summary)
