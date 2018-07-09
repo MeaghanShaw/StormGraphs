@@ -56,12 +56,19 @@ shape1=21
 OutpH<-ggplot(Outchem, aes(newdate,pH))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
   xlab("\nDate")+
   ylab("pH\n")
 #Call the graph
 OutpH
+
+#Save to PDF
+pdf("OutpH.pdf",height=6,width=8)
+OutpH
+dev.off()
 
 #Plots outlet EC by date
 library(ggplot2)
@@ -99,6 +106,8 @@ shape1=21
 OutAl<-ggplot(Outchem, aes(newdate,Al_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -115,6 +124,8 @@ shape1=21
 OutCa<-ggplot(Outchem, aes(newdate,Ca_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -131,6 +142,8 @@ shape1=21
 OutFe<-ggplot(Outchem, aes(newdate,Fe_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -146,6 +159,8 @@ shape1=21
 OutK<-ggplot(Outchem, aes(newdate,K_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -162,6 +177,8 @@ shape1=21
 OutMg<-ggplot(Outchem, aes(newdate,Mg_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -178,6 +195,8 @@ shape1=21
 OutMn<-ggplot(Outchem, aes(newdate,Mn_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -194,6 +213,8 @@ shape1=21
 OutNa<-ggplot(Outchem, aes(newdate,Na_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -210,6 +231,8 @@ shape1=21
 OutSO42<-ggplot(Outchem, aes(newdate,SO42_mmolL))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   guides(fill=guide_legend(title=NULL))+
   scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
@@ -246,11 +269,16 @@ OutMn.1<-OutMn+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.6,
 OutNa.1<-OutNa+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.7,label="H",size=14)
 OutAl.1<-OutAl+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.19,label="C",size=14)
 OutSO42.1<-OutSO42+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=15,label="D",size=12.5)
-grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1,OutCa.1,OutMg.1,OutK.1,OutNa.1, ncol=2, widths=c(1,1)))
+grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1, OutCa.1, OutMg.1, OutK.1, OutNa.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
-pdf("Outionbydate.pdf",height=20,width=20)
-grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1,OutCa.1,OutMg.1,OutK.1,OutNa.1, ncol=2, widths=c(1,1)))
+pdf("Outionbydate.pdf",height=20,width=25)
+grid.arrange(arrangeGrob(OutFe.1,OutMn.1,OutAl.1,OutSO42.1, OutCa.1, OutMg.1, OutK.1, OutNa.1, ncol=2, widths=c(1,1)))
+dev.off()
+
+#Save to PDF
+pdf("OutBaseionbydate.pdf",height=10,width=15)
+grid.arrange(arrangeGrob(OutCa.1,OutMg.1,OutK.1,OutNa.1, ncol=2, widths=c(1,1)))
 dev.off()
 
 # Plot outlet pH and Fe by date
@@ -296,6 +324,6 @@ OutQ<-ggplot(Discharge,aes(newdate,Q_m3s))+
 OutQ
 
 #Save to PDF
-pdf("OutQ.pdf",height=20,width=20)
+pdf("OutQ.pdf",height=6,width=6)
 OutQ
 dev.off()
