@@ -102,6 +102,8 @@ CQbasecat<-ggplot(longbaseCQ, aes(x=logQ,y=concentration,fill=as.factor(ion),sha
   scale_fill_manual(values=pal)+
   geom_smooth(method=lm,colour="black",se=FALSE)+
   theme_bw()+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   theme(legend.position="bottom")+
   theme(legend.title=element_blank())+
@@ -146,6 +148,8 @@ CQAMD<-ggplot(longamdCQ, aes(x=logQ,y=concentration,fill=as.factor(ion), shape=a
   scale_fill_manual(values=pal)+
   geom_smooth(method=lm,colour="black",se=FALSE)+
   theme_bw()+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   theme(legend.position="bottom")+
   theme(legend.title=element_blank())+
@@ -187,15 +191,15 @@ dev.off()
 
 #Convert CQ to LQ
 
-CQ$Ca_load <- CQ$Ca_mmolL*CQ$Q_m3s
-CQ$Fe_load <- CQ$Fe_mmolL*CQ$Q_m3s
-CQ$K_load <- CQ$K_mmolL*CQ$Q_m3s
-CQ$Mg_load <- CQ$Mg_mmolL*CQ$Q_m3s
-CQ$Mn_load <- CQ$Mn_mmolL*CQ$Q_m3s
-CQ$Na_load <- CQ$Na_mmolL*CQ$Q_m3s
-CQ$Al_load <- CQ$Al_mmolL*CQ$Q_m3s
-CQ$SO42_load <- CQ$SO42_mmolL*CQ$Q_m3s
-CQ$H_load <- CQ$H_umolL*CQ$Q_m3s
+CQ$Ca_load <- CQ$Ca_mmolL*CQ$Q_m3s*1000
+CQ$Fe_load <- CQ$Fe_mmolL*CQ$Q_m3s*1000
+CQ$K_load <- CQ$K_mmolL*CQ$Q_m3s*1000
+CQ$Mg_load <- CQ$Mg_mmolL*CQ$Q_m3s*1000
+CQ$Mn_load <- CQ$Mn_mmolL*CQ$Q_m3s*1000
+CQ$Na_load <- CQ$Na_mmolL*CQ$Q_m3s*1000
+CQ$Al_load <- CQ$Al_mmolL*CQ$Q_m3s*1000
+CQ$SO42_load <- CQ$SO42_mmolL*CQ$Q_m3s*1000
+CQ$H_load <- CQ$H_umolL*CQ$Q_m3s*1000
 
 #Log of loads
 CQ$logCa_load <- log10(CQ$Ca_load)
@@ -219,11 +223,18 @@ shape1=21
 HLoad<-ggplot(CQ, aes(newdate,H_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Date")+
+  xlab("\nDate")+
   ylab("H ("~mu~"mol "~s^-1~")")
 #Call the graph
 HLoad
+
+#Save to PDF
+pdf("HLoadbydate.pdf",height=10,width=10)
+HLoad
+dev.off()
 
 #Plot Ca load per date
 library(ggplot2)
@@ -232,6 +243,8 @@ shape1=21
 CaLoad<-ggplot(CQ, aes(newdate,Ca_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
   ylab("Ca (mmol "~s^-1~")")
@@ -245,9 +258,12 @@ shape1=21
 FeLoad<-ggplot(CQ, aes(newdate,Fe_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("Fe ("~mu~"mol "~s^-1~")")
+  ylim(0,1.5)+
+  ylab("Fe (mmol "~s^-1~")")
 #Call the graph
 FeLoad
 
@@ -258,9 +274,11 @@ shape1=21
 KLoad<-ggplot(CQ, aes(newdate,K_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("K ("~mu~"mol "~s^-1~")")
+  ylab("K (mmol "~s^-1~")")
 #Call the graph
 KLoad
 
@@ -271,9 +289,11 @@ shape1=21
 MgLoad<-ggplot(CQ, aes(newdate,Mg_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("Mg ("~mu~"mol "~s^-1~")")
+  ylab("Mg (mmol "~s^-1~")")
 #Call the graph
 MgLoad
 
@@ -284,9 +304,11 @@ shape1=21
 MnLoad<-ggplot(CQ, aes(newdate,Mn_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("Mn ("~mu~"mol "~s^-1~")")
+  ylab("Mn (mmol "~s^-1~")")
 #Call the graph
 MnLoad
 
@@ -297,9 +319,11 @@ shape1=21
 NaLoad<-ggplot(CQ, aes(newdate,Na_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("Na ("~mu~"mol "~s^-1~")")
+  ylab("Na (mmol "~s^-1~")")
 #Call the graph
 NaLoad
 
@@ -310,9 +334,12 @@ shape1=21
 AlLoad<-ggplot(CQ, aes(newdate,Al_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("Al ("~mu~"mol "~s^-1~")")
+  ylim(0,1.5)+
+  ylab("Al (mmol "~s^-1~")")
 #Call the graph
 AlLoad
 
@@ -323,11 +350,34 @@ shape1=21
 SO42Load<-ggplot(CQ, aes(newdate,SO42_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
   xlab("Date")+
-  ylab("S"~O[4]^-2~" ("~mu~"mol "~s^-1~")")
+  ylab("S"~O[4]^-2~" (mmol "~s^-1~")")
 #Call the graph
 SO42Load
+
+
+#Put all load by date plots in one figure
+library(gridExtra)
+library(lubridate)
+startdate<-"2017-06-12"
+xposition<-date(startdate)
+CaLoad.1<-CaLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=8,label="E",size=14)
+FeLoad.1<-FeLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.28,label="A",size=14)
+KLoad.1<-KLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.35,label="G",size=14)
+MgLoad.1<-MgLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=5.5,label="F",size=14)
+MnLoad.1<-MnLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.6,label="B",size=14)
+NaLoad.1<-NaLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.7,label="H",size=14)
+AlLoad.1<-AlLoad+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=0.19,label="C",size=14)
+SO42Load.1<-SO42Load+guides(fill=FALSE,shape=FALSE)+annotate("text",x=xposition,y=15,label="D",size=12.5)
+grid.arrange(arrangeGrob(FeLoad,MnLoad,AlLoad,SO42Load, CaLoad, MgLoad, KLoad, NaLoad, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("Outloadbydate.pdf",height=20,width=25)
+grid.arrange(arrangeGrob(FeLoad,MnLoad,AlLoad,SO42Load, CaLoad, MgLoad, KLoad, NaLoad, ncol=2, widths=c(1,1)))
+dev.off()
 
 #Reshape the data for LQ plot
 LQvarsforamdmelt<-c("Q_m3s","H_load","Ca_load","Fe_load","Al_load","K_load","Mg_load","Mn_load","Na_load","SO42_load")
@@ -342,11 +392,18 @@ shape1=21
 HLQ<-ggplot(CQ, aes(logQ,logH_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("H ("~mu~"mol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(H, "~mu~"mol "~s^-1~")")
 #Call the graph
 HLQ
+
+#Save to PDF
+pdf("HLQ.pdf",height=10,width=10)
+HLQ
+dev.off()
 
 #LQ for Ca
 library(ggplot2)
@@ -355,9 +412,11 @@ shape1=21
 CaLQ<-ggplot(CQ, aes(logQ,logCa_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("Ca (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(Ca, mmol "~s^-1~")")
 #Call the graph
 CaLQ
 
@@ -368,9 +427,11 @@ shape1=21
 FeLQ<-ggplot(CQ, aes(logQ,logFe_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("Fe (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(Fe, mmol "~s^-1~")")
 #Call the graph
 FeLQ
 
@@ -381,9 +442,12 @@ shape1=21
 KLQ<-ggplot(CQ, aes(logQ,logK_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("K (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylim(-1.5,1)+
+  ylab("log(K, mmol "~s^-1~")")
 #Call the graph
 KLQ
 
@@ -394,9 +458,11 @@ shape1=21
 MgLQ<-ggplot(CQ, aes(logQ,logMg_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("Mg (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(Mg, mmol "~s^-1~")")
 #Call the graph
 MgLQ
 
@@ -407,9 +473,12 @@ shape1=21
 MnLQ<-ggplot(CQ, aes(logQ,logMn_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("Mn (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylim(-1.5,1)+
+  ylab("log(Mn, mmol "~s^-1~")")
 #Call the graph
 MnLQ
 
@@ -420,9 +489,11 @@ shape1=21
 NaLQ<-ggplot(CQ, aes(logQ,logNa_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("Na (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(Na, mmol "~s^-1~")")
 #Call the graph
 NaLQ
 
@@ -433,9 +504,11 @@ shape1=21
 AlLQ<-ggplot(CQ, aes(logQ,logAl_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("Al (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(Al, mmol "~s^-1~")")
 #Call the graph
 AlLQ
 
@@ -446,8 +519,19 @@ shape1=21
 SO42LQ<-ggplot(CQ, aes(logQ,logSO42_load))+
   geom_point(colour="black",size=4, fill=pal, pch=shape1)+
   theme_bw(base_size=20)+
+  theme(text = element_text(size=30))+
+  theme(axis.text=element_text(size=30))+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
-  xlab("Q ("~m^3~s^-1~")")+
-  ylab("S"~O[4]^-2~" (mmol "~s^-1~")")
+  xlab("log(Q, "~m^3~s^-1~")")+
+  ylab("log(S"~O[4]^-2~", mmol "~s^-1~")")
 #Call the graph
 SO42LQ
+
+#Put all load by date plots in one figure
+library(gridExtra)
+grid.arrange(arrangeGrob(FeLQ,MnLQ,AlLQ,SO42LQ, CaLQ, MgLQ, KLQ, NaLQ, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("OutLQ.pdf",height=20,width=25)
+grid.arrange(arrangeGrob(FeLQ,MnLQ,AlLQ,SO42LQ, CaLQ, MgLQ, KLQ, NaLQ, ncol=2, widths=c(1,1)))
+dev.off()
