@@ -17,10 +17,11 @@ CQ$SO42_mmolL<-(CQ$SO42_mgL/96.06)
 
 #Transform pH to H+ mg/L
 
-CQ$H_mgL<-(10^(-1*CQ$pH))
+CQ$H_molL<-(10^(-1*CQ$pH))
 
 #H mg/L to mu/L
-CQ$H_umolL<-((1000/1.008)*CQ$H_mgL)
+CQ$H_umolL<-(1000*1000*CQ$H_molL)
+
 
 #Take the log of everything
 
@@ -185,7 +186,7 @@ CQAMD.1<-CQAMD+annotate("text",x=-3.8,y=1.5,label="B",size=14)
 grid.arrange(arrangeGrob(CQbasecat.1,CQAMD.1, ncol=2, widths=c(1,1)))
 
 #Save to PDF
-pdf("CQgraphs.pdf",height=10,width=10)
+pdf("CQgraphs.pdf",height=8,width=10)
 grid.arrange(arrangeGrob(CQbasecat.1,CQAMD.1, ncol=2, widths=c(1,1)))
 dev.off()
 
@@ -232,7 +233,7 @@ HLoad<-ggplot(CQ, aes(newdate,H_load))+
 HLoad
 
 #Save to PDF
-pdf("HLoadbydate.pdf",height=10,width=10)
+pdf("HLoadbydate.pdf",height=8,width=8)
 HLoad
 dev.off()
 
@@ -535,3 +536,75 @@ grid.arrange(arrangeGrob(FeLQ,MnLQ,AlLQ,SO42LQ, CaLQ, MgLQ, KLQ, NaLQ, ncol=2, w
 pdf("OutLQ.pdf",height=20,width=25)
 grid.arrange(arrangeGrob(FeLQ,MnLQ,AlLQ,SO42LQ, CaLQ, MgLQ, KLQ, NaLQ, ncol=2, widths=c(1,1)))
 dev.off()
+
+#Reshape the data for basecation LQ plot
+LQvarsforbasemelt<-c("logQ","logCa_load","logK_load","logMg_load","logNa_load")
+LQforbasemelt<-CQ[LQvarsforbasemelt]
+library(reshape2)
+longbaseLQ<-melt(LQforbasemelt,id.vars=c("logQ"),variable.name="ion",value.name="load")
+
+#All base cations plot
+library(ggplot2)
+pal<-c("#eff3ff","#bdd7e7","#6baed6","#2171b5")
+shape1<-c(21,22,23,24)
+LQbasecat<-ggplot(longbaseLQ, aes(x=logQ,y=load,fill=as.factor(ion),shape=as.factor(ion)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  geom_smooth(method=lm,colour="black",se=FALSE)+
+  theme_bw()+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  theme(legend.position="bottom")+
+  theme(legend.title=element_blank())+
+  guides(fill=guide_legend(title="ion"),shape=guide_legend(title="ion"))+
+  xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
+  ylab("Log(Load, mmol "~s^-1~")")
+
+#Call the graph
+LQbasecat
+
+#Reshape the data for AMD CQ plot
+LQvarsforamdmelt<-c("logQ","logFe_load","logAl_load","logMn_load","logSO42_load")
+LQforamdmelt<-CQ[LQvarsforamdmelt]
+library(reshape2)
+longamdLQ<-melt(LQforamdmelt,id.vars=c("logQ"),variable.name="ion",value.name="load")
+
+#Plot amd derived CQ (Fe, Mn, Al, SO42-)
+#All CQ ions plot
+#Add in lines and why is the legend not working?
+library(ggplot2)
+pal<-c("#feedde","#fdbe85","#fd8d3c","#d94701")
+shape1<-c(21,22,23,24)
+LQAMD<-ggplot(longamdLQ, aes(x=logQ,y=load,fill=as.factor(ion), shape=as.factor(ion)))+
+  geom_point(colour="black",size=4)+
+  scale_shape_manual(values=shape1)+    
+  scale_fill_manual(values=pal)+
+  geom_smooth(method=lm,colour="black",se=FALSE)+
+  theme_bw()+
+  theme(text = element_text(size=20))+
+  theme(axis.text=element_text(size=20))+
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+  theme(legend.position="bottom")+
+  theme(legend.title=element_blank())+
+  guides(fill=guide_legend(title="ion"),shape=guide_legend(title="ion"))+
+  xlab("\nLog(Q, "~m^3~" "~s^-1~")")+
+  ylab("Log(Load, mmol "~s^-1~")")
+
+
+#Call the graph
+LQAMD
+
+#Put CQ plots in one figure
+library(gridExtra)
+LQbasecat.1<-LQbasecat+annotate("text",x=-3.8,y=2,label="A",size=14)
+LQAMD.1<-LQAMD+annotate("text",x=-3.8,y=2.1,label="B",size=14)
+
+grid.arrange(arrangeGrob(LQbasecat.1,LQAMD.1, ncol=2, widths=c(1,1)))
+
+#Save to PDF
+pdf("LQgraphs.pdf",height=8,width=12)
+grid.arrange(arrangeGrob(LQbasecat.1,LQAMD.1, ncol=2, widths=c(1,1)))
+dev.off()
+
