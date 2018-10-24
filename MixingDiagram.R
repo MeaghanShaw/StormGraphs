@@ -89,6 +89,7 @@ Metalsmixing<-ggplot(basecatmix, aes(basecatmix$logMnNa,basecatmix$logFeNa,fill=
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("Log(Mn/Na)")+
   ylab("Log(Fe/Na)")+
+  ylim(-2,1)+
   theme(legend.position="bottom")
 #Call the graph
 Metalsmixing
@@ -117,14 +118,14 @@ CaMgbydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Ca_Mg))+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
   ylab("Ca/Mg")+
-  scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  scale_x_date(breaks=c(as.Date("2017-03-15"),as.Date("2017-05-15"),as.Date("2017-07-15"),as.Date("2017-09-15"),as.Date("2017-11-15")))+
   ylim(1,2)+
   theme(legend.position="bottom")
 #Call the graph
 CaMgbydate
 
 #save to pdf
-pdf("CaMgbydate.pdf",height=8,width=8)
+pdf("CaMgbydate.pdf",height=6,width=8)
 CaMgbydate
 dev.off()
 
@@ -142,7 +143,7 @@ FeNabydate<-ggplot(Mixbydate, aes(newdate,Mixbydate$Fe_Na))+
   guides(fill=guide_legend(title="Site"),shape=guide_legend(title="Site"))+
   xlab("\nDate")+
   ylab("Fe/Na")+
-  scale_x_date(breaks=c(as.Date("2017-04-01"),as.Date("2017-06-01"),as.Date("2017-08-01"),as.Date("2017-10-01"),as.Date("2017-12-01")))+
+  scale_x_date(breaks=c(as.Date("2017-03-15"),as.Date("2017-05-15"),as.Date("2017-07-15"),as.Date("2017-09-15"),as.Date("2017-11-15")))+
   ylim(0,4)+
   theme(legend.position="bottom")
 #Call the graph
